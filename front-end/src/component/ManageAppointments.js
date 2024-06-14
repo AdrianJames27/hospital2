@@ -178,7 +178,7 @@ export default function ManageAppointments() {
                 <p>Loading appointments...</p>
             ) : (
                 (!hasScheduled ? (
-                    <tr><td colSpan={'4'}>No Scheduled Appointment/s</td></tr>
+                    <p>No Scheduled Appointment/s</p>
                 ) : (
                     <>
                         <div>

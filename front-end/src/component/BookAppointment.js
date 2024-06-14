@@ -93,23 +93,27 @@ export default function BookAppointment() {
 
         let patientId;
 
-        if (userSession.role === 'patient') {
+        if (patient.length === 0) {
+            window.alert('You don\'t have a patient medical record yet');
+        } else if (userSession.role === 'patient' && patient.length !== 0) {
             // fetch only the id
             const [{ id }] = patient;
             patientId = id;
-        } else {
+        } else if (userSession.role === 'receptionist') {
             patientId = selectedPatientId;
         }
 
-        const appointment = {
-            patientId: patientId,
-            doctorId: selectedDoctorId,
-            appointmentDate: formatDateTime(appointmentData.appointmentDate),
-            status: 'scheduled',
-            reason: appointmentData.reason
-        };
-
-        await bookAppointment(appointment);
+        if (userSession.role === 'patient' || userSession.role === 'receptionist' || patient.length !== 0) {
+            const appointment = {
+                patientId: patientId,
+                doctorId: selectedDoctorId,
+                appointmentDate: formatDateTime(appointmentData.appointmentDate),
+                status: 'scheduled',
+                reason: appointmentData.reason
+            };
+    
+            await bookAppointment(appointment);
+        }
     }
 
     return (

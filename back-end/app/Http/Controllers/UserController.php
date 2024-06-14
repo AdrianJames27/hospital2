@@ -136,14 +136,14 @@ class UserController extends Controller
         if (!$user) {
             return response()->json([
                 'status' => 422,
-                'message' => 'Invalid Email'
+                'message' => 'Wrong Email'
             ]);
         }
 
         if (!Hash::check($request->password, $user->password)) {
             return response()->json([
                 'status' => 422,
-                'message' => 'Invalid Password'
+                'message' => 'Wrong Password'
             ]);
         }
 

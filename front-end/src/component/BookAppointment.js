@@ -14,6 +14,20 @@ export default function BookAppointment() {
     // if userSession is empty and role is not admin, go back to login page
     if (!userSession && !allowedRole.includes(userSession.role)) navigate('/');
 
+    useEffect(() => {
+        switch (userSession.role) {
+            case 'patient':
+                navigate('/hospital/patient/book_appointment');
+                break;
+            case 'receptionist':
+                navigate('/hospital/patient/book_appointment');
+                break;
+            default:
+                navigate('/');
+                break;
+        }
+    }, []);
+
     const [appointmentData, setAppointmentData] = useState({
         appointmentDate: '',
         reason: ''

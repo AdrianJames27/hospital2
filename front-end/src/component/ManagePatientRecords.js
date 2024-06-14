@@ -11,6 +11,23 @@ export default function ManagePatientRecords() {
     // if userSession is empty or role is not any of the allowedUser, go back to login page
     if (!userSession || !allowedUser.includes(userSession.role)) navigate('/');
 
+    useEffect(() => {
+        switch (userSession.role) {
+            case 'admin':
+                navigate('/hospital/admin/manage_patient_records');
+                break;
+            case 'doctor':
+                navigate('/hospital/doctor/manage_patient_records');
+                break;
+            case 'receptionist':
+                navigate('/hospital/receptionist/manage_patient_records');
+                break;
+            default:
+                navigate('/');
+                break;
+        }
+    }, []);
+
     const {
         isPatientLoading,
         hasPatientError,

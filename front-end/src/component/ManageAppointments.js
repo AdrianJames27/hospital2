@@ -20,7 +20,21 @@ export default function ManageAppointments() {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
 
     // if userSession is empty and role is not admin, go back to login page
-    if (!userSession && !allowedRole.includes(userSession.role)) navigate('/');
+    if (!userSession || !allowedRole.includes(userSession.role)) navigate('/');
+
+    useEffect(() => {
+        switch (userSession.role) {
+            case 'patient':
+                navigate('/hospital/patient/manage_appointments');
+                break;
+            case 'doctor':
+                navigate('/hospital/doctor/manage_appointments');
+                break;
+            default:
+                navigate('/');
+                break;
+        }
+    }, []);
 
     const {
         isPatientLoading,

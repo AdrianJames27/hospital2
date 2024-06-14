@@ -8,7 +8,7 @@ export default function ManageUser() {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
 
     // if userSession is empty and role is not admin, go back to login page
-    if (!userSession && userSession.role !== 'admin') navigate('/');
+    if (!userSession || userSession.role !== 'admin') navigate('/');
 
     const [selectedUser, setSelectedUser] = useState(''); // Manage selected user type
     const {

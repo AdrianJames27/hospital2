@@ -153,7 +153,7 @@ export default function ManageAppointments() {
 
         const appointment = {
             id: appointmentData.appointmentId,
-            appointment_date: formatDateTime(appointmentData.appointmentDate),
+            appointmentDate: formatDateTime(appointmentData.appointmentDate),
             status: appointmentData.status
         };
 
@@ -187,18 +187,18 @@ export default function ManageAppointments() {
                                 <input
                                     type="datetime-local"
                                     name="appointmentDate"
-                                    disabled={!isEditing || userSession.role === 'doctor' && isEditing}
+                                    disabled={(!isEditing || userSession.role === 'doctor') && isEditing}
                                     value={appointmentData.appointmentDate}
                                     onChange={handleOnChange}
                                 /> <br />
                                 <label htmlFor="status">Status</label>
                                 <select
-                                    disabled={!isEditing || userSession.role === 'patient' && isEditing}
+                                    disabled={(!isEditing || userSession.role === 'patient') && isEditing}
                                     name="status"
                                     onChange={handleOnChange}
                                     value={appointmentData.status}
                                 >
-                                    <option value={''}>Select Status</option>
+                                    <option disabled value={''}>Select Status</option>
                                     {statusList.map((status, index) => (
                                         <option key={index} value={status}>{status}</option>
                                     ))}
@@ -249,6 +249,8 @@ export default function ManageAppointments() {
                                                 </td>
                                             </tr>
                                         );
+                                    } else {
+                                        return null;
                                     }
                                 })}
                             </tbody>

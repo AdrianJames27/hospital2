@@ -17,6 +17,7 @@ export default function ManageMedicalRecords() {
     const [selectedPatient, setSelectedPatient] = useState({});
     const [selectedMedicalRecord, setSelectedMedicalRecord] = useState({});
     const [medicalRecordData, setMedicalRecordData] = useState({
+        id: '',
         patientId: '',
         visitDate: '',
         diagnosis: '',
@@ -57,6 +58,7 @@ export default function ManageMedicalRecords() {
     useEffect(() => {
         if (!hasMedicalRecordError) {
             setMedicalRecordData({
+                id: '',
                 patientId: '',
                 visitDate: '',
                 diagnosis: '',
@@ -74,9 +76,10 @@ export default function ManageMedicalRecords() {
         dialogRef.current.showModal();
     }
 
-    function handleEdit(patient, medicalRecord) {
+    function handleEdit(medicalRecord) {
         setMedicalRecordData({
-            patientId: patient.id,
+            id: medicalRecord.id,
+            patientId: medicalRecord.patient_id,
             visitDate: medicalRecord.visit_date,
             diagnosis: medicalRecord.diagnosis,
             treatment: medicalRecord.treatment,
@@ -88,6 +91,7 @@ export default function ManageMedicalRecords() {
 
     function handleOnClickCancel() {
         setMedicalRecordData({
+            id: '',
             patientId: '',
             visitDate: '',
             diagnosis: '',
@@ -114,9 +118,10 @@ export default function ManageMedicalRecords() {
         const [{ id }] = doctor;
 
         const medicalRecord = {
-            patient_id: medicalRecordData.patientId,
-            doctor_id: id,
-            visit_date: medicalRecordData.visitDate,
+            id: medicalRecordData.id,
+            patientId: medicalRecordData.patientId,
+            doctorId: id,
+            visitDate: medicalRecordData.visitDate,
             diagnosis: medicalRecordData.diagnosis,
             treatment: medicalRecordData.treatment,
             notes: medicalRecordData.notes
@@ -219,7 +224,7 @@ export default function ManageMedicalRecords() {
                                             <td>{medicalRecord.notes}</td>
                                             <td>
                                                 <button onClick={() => viewMedicalRecord(patient, medicalRecord)}>View</button>
-                                                <button onClick={() => handleEdit(patient, medicalRecord)}>Edit</button>
+                                                <button onClick={() => handleEdit(medicalRecord)}>Edit</button>
                                             </td>
                                         </tr>
                                     )

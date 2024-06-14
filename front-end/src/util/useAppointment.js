@@ -142,7 +142,7 @@ export default function useAppointment() {
         const url = `http://127.0.0.1:8000/api/appointment/${appointment.id}/update`;
         const method = 'PUT';
         const body = {
-            appointment_date: appointment.appointment_date,
+            appointment_date: appointment.appointmentDate,
             status: appointment.status,
         };
 

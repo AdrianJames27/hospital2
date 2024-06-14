@@ -80,7 +80,7 @@ function App() {
           />
 
           <Route 
-            path='/hostpital/patient/manage_appointments'
+            path='/hospital/patient/manage_appointments'
             element={<ManageAppointments />}
           />
 

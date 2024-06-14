@@ -83,9 +83,9 @@ export default function useMedicalRecord() {
         const url = 'http://127.0.0.1:8000/api/medicalRecord/add';
         const method = 'POST';
         const body = {
-            patient_id: medicalRecord.patient_id,
-            doctor_id: medicalRecord.doctor_id,
-            visit_date: medicalRecord.visit_date,
+            patient_id: medicalRecord.patientId,
+            doctor_id: medicalRecord.doctorId,
+            visit_date: medicalRecord.visitDate,
             diagnosis: medicalRecord.diagnosis,
             treatment: medicalRecord.treatment,
             notes: medicalRecord.notes,
@@ -139,9 +139,9 @@ export default function useMedicalRecord() {
         const url = `http://127.0.0.1:8000/api/medicalRecord/${medicalRecord.id}/edit`;
         const method = 'PUT';
         const body = {
-            patient_id: medicalRecord.patient_id,
-            doctor_id: medicalRecord.doctor_id,
-            visit_date: medicalRecord.visit_date,
+            patient_id: medicalRecord.patientId,
+            doctor_id: medicalRecord.doctorId,
+            visit_date: medicalRecord.visitDate,
             diagnosis: medicalRecord.diagnosis,
             treatment: medicalRecord.treatment,
             notes: medicalRecord.notes,

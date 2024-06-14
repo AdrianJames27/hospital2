@@ -21,6 +21,7 @@ export default function DoctorViewProfile() {
     });
     const [mode, setMode] = useState('View');
     const {
+        hasDoctorError,
         isDoctorLoading,
         doctor,
         showDoctor,
@@ -38,6 +39,12 @@ export default function DoctorViewProfile() {
     useEffect(() => {
         if (doctor && doctor.length > 0) {
             defaultData();
+        }
+    }, [doctor]);
+
+    useEffect(() => {
+        if (!hasDoctorError) {
+            setMode('View');
         }
     }, [doctor]);
 
@@ -73,10 +80,10 @@ export default function DoctorViewProfile() {
 
         const doctor = {
             id: doctorData.doctorId,
-            first_name: doctorData.firstName,
-            last_name: doctorData.lastName,
+            firstName: doctorData.firstName,
+            lastName: doctorData.lastName,
             specialization: doctorData.specialization,
-            license_number: doctorData.licenseNumber,
+            licenseNumber: doctorData.licenseNumber,
             phone: doctorData.phone,
             email: doctorData.email
         };

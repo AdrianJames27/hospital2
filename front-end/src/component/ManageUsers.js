@@ -33,7 +33,7 @@ export default function ManageUser() {
         password: '',
         role: ''
     });
-    const definedRoles = ['doctor', 'receptionist', 'patient'];
+    const definedRoles = ['patient', 'doctor', 'receptionist'];
 
     useEffect(() => {
         async function fetchDatas() {
@@ -44,20 +44,6 @@ export default function ManageUser() {
 
         fetchDatas();
     }, [])
-
-    useEffect(() => {
-        setSelectedUser(!selectedUser ? 'Patients' : selectedUser);
-
-        setUserData({
-            id: '',
-            name: '',
-            email: '',
-            password: '',
-            role: selectedUser.substring(0, selectedUser.length - 1).toLocaleLowerCase()
-        });
-
-        setIsEditing(false);
-    }, [selectedUser]);
 
     useEffect(() => {
         // if the process has no validation error
@@ -73,6 +59,20 @@ export default function ManageUser() {
             setIsEditing(false);
         }
     }, [patients, doctors, receptionists]);
+
+    useEffect(() => {
+        setSelectedUser(!selectedUser ? 'Patients' : selectedUser);
+
+        setUserData({
+            id: '',
+            name: '',
+            email: '',
+            password: '',
+            role: selectedUser.substring(0, selectedUser.length - 1).toLowerCase()
+        });
+
+        setIsEditing(false);
+    }, [selectedUser, patients, doctors, receptionists]);
 
     function handleOnClickUser(e) {
         e.preventDefault();
@@ -211,11 +211,11 @@ export default function ManageUser() {
                                 }
                             </select>
                         ) : (
-                            <select name="role" disabled onChange={handleOnInputChange}
-                                value={selectedUser.substring(0, selectedUser.length - 1).toLocaleLowerCase()}
-                            >
+                            <select name="role" disabled onChange={handleOnInputChange} value={userData.role}>
                                 {definedRoles.map((definedRole, index) => {
-                                    return <option key={index} value={definedRole}>{definedRole}</option>;
+                                    if (definedRole === userData.role) {
+                                        return <option key={index} value={definedRole}>{definedRole}</option>;
+                                    }
                                 })}
                             </select>
                         )} <br />

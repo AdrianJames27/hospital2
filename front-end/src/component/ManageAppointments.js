@@ -187,13 +187,13 @@ export default function ManageAppointments() {
                                 <input
                                     type="datetime-local"
                                     name="appointmentDate"
-                                    disabled={(!isEditing || userSession.role === 'doctor') && isEditing}
+                                    disabled={!isEditing || (userSession.role === 'doctor' && isEditing)}
                                     value={appointmentData.appointmentDate}
                                     onChange={handleOnChange}
                                 /> <br />
                                 <label htmlFor="status">Status</label>
                                 <select
-                                    disabled={(!isEditing || userSession.role === 'patient') && isEditing}
+                                    disabled={!isEditing || (userSession.role === 'patient' && isEditing)}
                                     name="status"
                                     onChange={handleOnChange}
                                     value={appointmentData.status}

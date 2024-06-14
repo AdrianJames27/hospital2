@@ -193,7 +193,7 @@ export default function DoctorViewProfile() {
                 <p>Loading profile...</p>
             ) : (
                 !doctor || doctor.length === 0 ? (
-                    <p>You don't have record yet</p>
+                    <p>You don't have a record yet</p>
                 ) : (manageView())
             )}
         </div>

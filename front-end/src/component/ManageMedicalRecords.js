@@ -135,7 +135,7 @@ export default function ManageMedicalRecords() {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="">Select a Patient</label>
+                    <label htmlFor="patientId">Select a Patient</label>
                     <select required name="patientId" onChange={handleOnChange} value={medicalRecordData.patientId}>
                         <option disabled value={''}>Select Patient</option>
                         {
@@ -191,8 +191,10 @@ export default function ManageMedicalRecords() {
                         />
                     }
                 </form>
-                {(!isMedicalRecordLoading && medicalRecords.length === 0) ? (
-                    <p>No medical record/s yet</p>
+                {(isMedicalRecordLoading || isPatientLoading) ? (
+                    <p>Loading medical records...</p>
+                ) : (!medicalRecords || medicalRecords.length === 0) ? (
+                    <p>Medical records list is empty</p>
                 ) : (
                     <table>
                         <thead>
@@ -235,13 +237,7 @@ export default function ManageMedicalRecords() {
             <StaffNavigation userRole={userSession.role} />
             <div>
                 <h1>Manage Medical Records</h1>
-                {
-                    isMedicalRecordLoading || isPatientLoading ? (
-                        <p>Loading contents...</p>
-                    ) : (
-                        displayContent()
-                    )
-                }
+                {displayContent()}
             </div>
             <dialog ref={dialogRef}>
                 <h2>Medical Record of {selectedPatient.first_name} {selectedPatient.last_name}</h2>

@@ -46,7 +46,7 @@ export default function PatientMedicalRecords() {
         <div>
             <PatientNavigation />
             <h1>Medical Records</h1>
-            {isPatientLoading && isMedicalRecordLoading ? (
+            {isPatientLoading || isMedicalRecordLoading ? (
                 <p>Loading medical records...</p>
             ) : (
                 (!medicalRecord || medicalRecord.length === 0) ? (

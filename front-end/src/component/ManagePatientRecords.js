@@ -255,10 +255,10 @@ export default function ManagePatientRecords() {
             </div>
             <div>
                 {isPatientLoading ? (
-                    <p>Loading Patient Record...</p>
+                    <p>Loading patient records...</p>
                 ) : (
                     (!patients || patients.length === 0) ? (
-                        <p>Patient record is empty</p>
+                        <p>Patient record list is empty</p>
                     ) : (
                         <table>
                             <thead>

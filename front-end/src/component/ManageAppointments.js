@@ -159,7 +159,7 @@ export default function ManageAppointments() {
                 userSession.role === 'doctor' && <StaffNavigation userRole={userSession.role} />
             )}
             <h1>Manage Appointments</h1>
-            {isAppointmentLoading && (isPatientLoading || isDoctorLoading) ? (
+            {(isPatientLoading || isDoctorLoading || isAppointmentLoading) ? (
                 <p>Loading appointments...</p>
             ) : (
                 (!hasScheduled ? (

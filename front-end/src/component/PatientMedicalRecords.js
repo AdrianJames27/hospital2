@@ -73,6 +73,8 @@ export default function PatientMedicalRecords() {
                                             <td>{record.notes}</td>
                                         </tr>
                                     );
+                                } else {
+                                    return null;
                                 }
                             })}
                         </tbody>

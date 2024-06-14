@@ -135,6 +135,7 @@ export default function ManageMedicalRecords() {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
+                    <label htmlFor="">Select a Patient</label>
                     <select required name="patientId" onChange={handleOnChange} value={medicalRecordData.patientId}>
                         <option disabled value={''}>Select Patient</option>
                         {

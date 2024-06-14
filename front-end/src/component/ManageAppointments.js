@@ -8,32 +8,12 @@ import useDoctor from "../util/useDoctor";
 
 export default function ManageAppointments() {
     const navigate = useNavigate();
-    const [isEditing, setIsEditing] = useState(false);
-    const [hasScheduled, setHasScheduled] = useState(false);
-    const [appointmentData, setAppointmentData] = useState({
-        appointmentId: '',
-        appointmentDate: '',
-        status: ''
-    });
-    const statusList = ['scheduled', 'completed', 'cancelled'];
     const allowedRole = ['patient', 'doctor'];
-    const userSessionString = sessionStorage.getItem('userSession');
+    const statusList = ['scheduled', 'completed', 'cancelled'];
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
 
-    // if userSession is empty or the role is not the 
-    // same to the designated role, go back to login page
-    if (!userSessionString) {
-        navigate('/');
-    } else {
-        try {
-            // If userSession exists but the role is not the designated role, redirect to the login page
-            if (!allowedRole.includes(userSession.role)) navigate('/');
-        } catch (error) {
-            // If JSON parsing fails, redirect to the login page
-            console.error("Failed to parse userSession:", error);
-            navigate('/');
-        }
-    }
+    // if role is not any of the allowedRole, go back to login page
+    if (!allowedRole.includes(userSession.role)) navigate('/');
 
     useEffect(() => {
         switch (userSession.role) {
@@ -48,6 +28,14 @@ export default function ManageAppointments() {
                 break;
         }
     }, []);
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [hasScheduled, setHasScheduled] = useState(false);
+    const [appointmentData, setAppointmentData] = useState({
+        appointmentId: '',
+        appointmentDate: '',
+        status: ''
+    });
 
     const {
         isPatientLoading,

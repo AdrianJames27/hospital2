@@ -129,7 +129,7 @@ export default function BookAppointment() {
                 {isDoctorLoading || isPatientLoading ? (
                     <p>Loading doctors list...</p>
                 ) : (
-                    ((!doctors || doctors.length === 0) && (!patients || patients.length === 0)) ? (
+                    (!doctors || doctors.length === 0) ? (
                         <p>There is no doctor</p>
                     ) : (
                         <>

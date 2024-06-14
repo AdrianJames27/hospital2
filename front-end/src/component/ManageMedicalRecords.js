@@ -191,8 +191,8 @@ export default function ManageMedicalRecords() {
                         />
                     }
                 </form>
-                {(!isMedicalRecordLoading && medicalRecords.length === 0) || (!isPatientLoading && patients.length === 0) ? (
-                    <p>Data is empty</p>
+                {(!isMedicalRecordLoading && medicalRecords.length === 0) ? (
+                    <p>No medical record/s yet</p>
                 ) : (
                     <table>
                         <thead>

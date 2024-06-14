@@ -258,7 +258,7 @@ export default function ManagePatientRecords() {
                     <p>Loading Patient Record...</p>
                 ) : (
                     (!patients || patients.length === 0) ? (
-                        <p>Patient Record is empty</p>
+                        <p>Patient record is empty</p>
                     ) : (
                         <table>
                             <thead>

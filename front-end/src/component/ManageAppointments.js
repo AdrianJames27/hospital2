@@ -9,6 +9,7 @@ import useDoctor from "../util/useDoctor";
 export default function ManageAppointments() {
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
+    const [hasScheduled, setHasScheduled] = useState(false);
     const [appointmentData, setAppointmentData] = useState({
         appointmentId: '',
         appointmentDate: '',
@@ -84,6 +85,11 @@ export default function ManageAppointments() {
         }
     }, [appointment]);
 
+    useEffect(() => {
+        // Check if there are any scheduled appointments
+        setHasScheduled(appointment.some(appointment => appointment.status === 'scheduled'));
+    }, [appointment]);
+
     function handleOnChange(e) {
         const { name, value } = e.target;
         setAppointmentData({ ...appointmentData, [name]: value });
@@ -156,9 +162,8 @@ export default function ManageAppointments() {
             {isAppointmentLoading && (isPatientLoading || isDoctorLoading) ? (
                 <p>Loading appointments...</p>
             ) : (
-                ((!appointment || appointment.length === 0) &&
-                    (!patient || patient.length === 0) || (!doctor || doctor.length === 0)) ? (
-                    <p>No scheduled appointments</p>
+                (!hasScheduled ? (
+                    <tr><td colSpan={'4'}>No Scheduled Appointment/s</td></tr>
                 ) : (
                     <>
                         <div>
@@ -234,7 +239,7 @@ export default function ManageAppointments() {
                             </tbody>
                         </table>
                     </>
-                )
+                ))
             )}
         </div>
     );

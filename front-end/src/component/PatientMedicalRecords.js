@@ -49,7 +49,7 @@ export default function PatientMedicalRecords() {
             {isPatientLoading && isMedicalRecordLoading ? (
                 <p>Loading medical records...</p>
             ) : (
-                (!medicalRecord || medicalRecord.length === 0) && (!patient || patient.length === 0) ? (
+                (!medicalRecord || medicalRecord.length === 0) ? (
                     <p>You have no medical record/s yet</p>
                 ) : (
                     <table>

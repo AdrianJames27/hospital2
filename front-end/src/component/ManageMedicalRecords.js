@@ -230,9 +230,9 @@ export default function ManageMedicalRecords() {
                 <div class="tblcon">
                      <h1 class="lblmedrec"> List of Medical Records</h1>
                 {(isMedicalRecordLoading || isPatientLoading) ? (
-                    <p>Loading medical records...</p>
+                    <p className="norec">Loading medical records...</p>
                 ) : (!medicalRecords || medicalRecords.length === 0) ? (
-                    <p>Medical records list is empty</p>
+                    <p className="norec">Medical records list is empty</p>
                 ) : (
                     
                     <table className="table table-striped">

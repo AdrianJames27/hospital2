@@ -308,7 +308,7 @@ export default function ManageAppointments() {
                                                         </button>
                                                         {
                                                             userSession.role === 'patient' &&
-                                                            <button className="edit-mr bg-warning" onClick={() => handleOnClickCancelSchedule(appointment.id)}>
+                                                            <button className="cancelsched" onClick={() => handleOnClickCancelSchedule(appointment.id)}>
                                                                 Cancel Schedule
                                                             </button>
                                                         }

@@ -262,6 +262,20 @@ td{
   
 }
 
+.cancelsched{
+  background-color: #dfc865 !important;
+  color: white;
+  width: 150px !important;
+  height: 30px;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-right: 20px !important;
+  margin-bottom: 5px;
+
+}
+
 .view-mr{
   background-color: #73d378 !important;
   color: white;

@@ -30,106 +30,113 @@ export default function StaffNavigation({ userRole }) {
 
     function navigationForReceptionist() {
         return (
-            <nav>
-                <ul>
-                    <li>
-                        <Link to={'/hospital/receptionist/panel'}>
-                            Dashboard
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/receptionist/manage_patient_records'}>
-                            Manage Patient Records
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/receptionist/book_appointment'}>
-                            Book Appointment
-                        </Link>
-                    </li>
-                    <li>
-                        <button onClick={handleOnClickLogout}>Logout</button>
-                    </li>
-                </ul>
+            <nav className="navbar fixed-top">
+                <div className="container-fluid" >
+                    <ul className="nav nav-underline">
+                        <li className="nav-item">
+                            <Link to={'/hospital/receptionist/panel'} className="nav-link">
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/hospital/receptionist/manage_patient_records'} className="nav-link">
+                                Manage Patient Records
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/hospital/receptionist/book_appointment'} className="nav-link">
+                                Book Appointment
+                            </Link>
+                        </li>
+                            
+                    </ul>
+                   
+                         <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout</button>
+                          
+                </div>
             </nav>
         );
     }
 
     function navigationForDoctor() {
         return (
-            <nav>
-                <ul>
-                    <li>
-                        <Link to={'/hospital/doctor/panel'}>
-                            Dashboard
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/doctor/profile'}>
-                            View Profile
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/doctor/manage_patient_records'}>
-                            Manage Patient Records
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/doctor/manage_medical_records'}>
-                            Manage Medical Records
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/doctor/manage_appointments'}>
-                            Manage Appointments
-                        </Link>
-                    </li>
-                    <li>
-                        <button onClick={handleOnClickLogout}>Logout</button>
-                    </li>
-                </ul>
+            <nav className="navbar fixed-top">
+                    <div className="container-fluid" >
+                    <ul className="nav nav-underline">
+                        <li className="nav-item">
+                            <Link to={'/hospital/doctor/panel'} className="nav-link">
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/hospital/doctor/profile'} className="nav-link">
+                                View Profile
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/hospital/doctor/manage_patient_records'} className="nav-link">
+                                Manage Patient Records
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/hospital/doctor/manage_medical_records'} className="nav-link">
+                                Manage Medical Records
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/hospital/doctor/manage_appointments'} className="nav-link">
+                                Manage Appointments
+                            </Link>
+                        </li>
+                        </ul>
+                   
+                         <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout
+
+                         </button>
+                </div>
             </nav>
         );
     }
 
     function navigationForAdmin() {
         return (
-            <nav>
-                <ul>
-                    <li>
-                        <Link to={'/hospital/admin/panel'}>
-                            Dashboard
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/admin/view_appointments'}>
-                            View Appoiment Records
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/admin/view_medical_records'}>
-                            View Medical Records
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/admin/manage_user'}>
-                            Manage Users
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/admin/manage_doctors'}>
-                            Manage Doctors
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/hospital/admin/manage_patient_records'}>
-                            Manage Patient Records
-                        </Link>
-                    </li>
-                    <li>
-                        <button onClick={handleOnClickLogout}>Logout</button>
-                    </li>
-                </ul>
+            <nav className="navbar fixed-top">
+                <div className="container-fluid" >
+                    <ul className="nav nav-underline">
+                        <li className="nav-item" >
+                            <Link to={'/hospital/admin/panel'} className="nav-link">
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li className="nav-item" >
+                            <Link to={'/hospital/admin/view_appointments'} className="nav-link">
+                                View Appoiment Records
+                            </Link>
+                        </li>
+                        <li className="nav-item" >
+                            <Link to={'/hospital/admin/view_medical_records'} className="nav-link">
+                                View Medical Records
+                            </Link>
+                        </li>
+                        <li className="nav-item" >
+                            <Link to={'/hospital/admin/manage_user'} className="nav-link">
+                                Manage Users
+                            </Link>
+                        </li>
+                        <li className="nav-item" >
+                            <Link to={'/hospital/admin/manage_doctors'} className="nav-link">
+                                Manage Doctors
+                            </Link>
+                        </li>
+                        <li className="nav-item" >
+                            <Link to={'/hospital/admin/manage_patient_records'} className="nav-link">
+                                Manage Patient Records
+                            </Link>
+                        </li>
+                       </ul>
+                   
+                         <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout</button>
+                </div>
             </nav>
         );
     }

@@ -178,84 +178,108 @@ export default function ManageUser() {
 
     function displayUserAs(userList) {
         return (
-            <>
-                <h3>{selectedUser}</h3>
-                <div>
+            <> 
+            <div className="container manageuser-con">
+                <h3 class = "lblform">{selectedUser} Form</h3>
+                <div className="container">
                     <form onSubmit={handleOnSubmit}>
-                        <label htmlFor="name">Name:</label>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Enter your name"
-                            onChange={handleOnInputChange}
-                            value={userData.name}
-                            required
-                        /> <br />
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="text"
-                            name="email"
-                            placeholder="Enter your email"
-                            onChange={handleOnInputChange}
-                            value={userData.email}
-                            required
-                        /> <br />
-                        <label htmlFor="role">Role:</label>
-                        {isEditing ? (
-                            <select name="role" onChange={handleOnInputChange} value={userData.role}>
-                                <option disabled value={''}>Select Role</option>
+                    <div className="row mb-4 form-group">
+                                <label htmlFor="name" class="col-sm-2 col-form-label">Name:</label>
+                                <div class="col-sm-10">
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        name="name"
+                                        placeholder="Enter your name"
+                                        onChange={handleOnInputChange}
+                                        value={userData.name}
+                                        required
+                                    /> 
+                                </div>
+                    </div>
+                    <div className="row mb-4 form-group">
+                                <label htmlFor="email" class="col-sm-2 col-form-label">Email:</label>
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        className="form-control"
+                                        placeholder="Enter your email"
+                                        onChange={handleOnInputChange}
+                                        value={userData.email}
+                                        required
+                                    /> 
+                                </div>
+                    </div>
+                    <div className="row mb-4 form-group">
+                                <label htmlFor="role" class="col-sm-2 col-form-label">Role:</label >
+                                {isEditing ? (
+                                    <div class="col-sm-10">
+                                        <select class = "form-select" name="role" onChange={handleOnInputChange} value={userData.role}>
+                                            <option disabled value={''}>Select Role</option>
+                                            {
+                                                definedRoles.map((definedRole, index) => {
+                                                    return <option key={index} value={definedRole}>{definedRole}</option>;
+                                                })
+                                            }
+                                        </select>
+                                    </div>
+                                ) : (
+                                    <div class="col-sm-10">
+                                        <select className = "form-select" name="role" disabled onChange={handleOnInputChange} value={userData.role}>
+                                            {definedRoles.map((definedRole, index) => {
+                                                if (definedRole === userData.role) {
+                                                    return <option key={index} value={definedRole}>{definedRole}</option>;
+                                                }
+                                            })}
+                                        </select>
+                                    </div>
+                                )} 
+                    </div>
+                    <div className="row mb-4 form-group">
+                                <label class="col-sm-2 col-form-label"htmlFor="password">Password:</label>
+                                <div class="col-sm-10">
+                                    <div className="input-group">
+                                        <input
+                                            className="form-control"
+                                            type={showPassword ? 'text' : 'password'}
+                                            name="password"
+                                            placeholder="Enter your password"
+                                            onChange={handleOnInputChange}
+                                            value={userData.password}
+                                        />
+                                        <button className="btn btn-outline-secondary" type="button" onClick={handleOnShowPassword}>
+                                    {showPassword ? 'Hide Password' : 'Show Password'}
+                                </button>
+                                    </div>
+                                </div>
+                    </div>
+                                <input
+                                class="form-control"
+                     id="formbtn"
+                                    type="submit"
+                                    value={isEditing ? `Update ${selectedUser.substring(0, selectedUser.length - 1)}`
+                                        : `Add ${selectedUser.substring(0, selectedUser.length - 1)}`}
+                                />
                                 {
-                                    definedRoles.map((definedRole, index) => {
-                                        return <option key={index} value={definedRole}>{definedRole}</option>;
-                                    })
+                                    isEditing &&
+                                    <input
+                                        type="button"
+                                        value={'Cancel'}
+                                        onClick={handleOnClickCancel}
+                                    />
                                 }
-                            </select>
-                        ) : (
-                            <select name="role" disabled onChange={handleOnInputChange} value={userData.role}>
-                                {definedRoles.map((definedRole, index) => {
-                                    if (definedRole === userData.role) {
-                                        return <option key={index} value={definedRole}>{definedRole}</option>;
-                                    }
-                                })}
-                            </select>
-                        )} <br />
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            name="password"
-                            placeholder="Enter your password"
-                            onChange={handleOnInputChange}
-                            value={userData.password}
-                        />
-                        <input
-                            type="button"
-                            onClick={handleOnShowPassword}
-                            value={showPassword ? 'Hide Password' : 'Show Password'}
-                        /> <br />
-                        <input
-                            type="submit"
-                            value={isEditing ? `Update ${selectedUser.substring(0, selectedUser.length - 1)}`
-                                : `Add ${selectedUser.substring(0, selectedUser.length - 1)}`}
-                        />
-                        {
-                            isEditing &&
-                            <input
-                                type="button"
-                                value={'Cancel'}
-                                onClick={handleOnClickCancel}
-                            />
-                        }
                     </form>
                 </div>
                 <div>
-                    <h2>{selectedUser.substring(0, selectedUser.length - 1)} List</h2>
+                    <h2 class="lblform">{selectedUser.substring(0, selectedUser.length - 1)} List</h2>
                     {isUserLoading ? (
                         <p>Loading {selectedUser}...</p>
                     ) : (
                         (!userList || userList.length === 0) ? (
-                            <p>{selectedUser} list is empty</p>
+                            <p >{selectedUser} list is empty</p>
                         ) : (
-                            <table>
+                            <table class="table table-striped table-color">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -272,8 +296,11 @@ export default function ManageUser() {
                                                 <td>{user.email}</td>
                                                 <td>{user.role}</td>
                                                 <td>
-                                                    <button onClick={() => handleOnEditUser(user)}>Edit</button>
-                                                    <button onClick={() => handleOnDeleteUser(user.id)}>Delete</button>
+                                                    <button
+                                                    class="edit" onClick={() => handleOnEditUser(user)}>Edit</button>
+                                                    <button 
+                                                    id="delete" 
+                                                    class="delete" onClick={() => handleOnDeleteUser(user.id)}>Delete</button>
                                                 </td>
                                             </tr>
                                         );
@@ -283,24 +310,25 @@ export default function ManageUser() {
                         )
                     )}
                 </div>
+            </div>
             </>
         );
     }
 
     return (
-        <div>
+        <div className="container manage-users">
             <StaffNavigation userRole={userSession.role} />
-            <h1>Manage Users</h1>
-            <div>
-                <ul>
-                    <li>
-                        <a href="#" onClick={handleOnClickUser}>Patients</a>
+            <h1 class="lbl">Manage Users</h1>
+            <div class="container navmanage-users">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a  class="nav-link link-user " href="#" onClick={handleOnClickUser}>Patients</a>
                     </li>
-                    <li>
-                        <a href="#" onClick={handleOnClickUser}>Doctors</a>
+                    <li class="nav-item">
+                        <a class="nav-link link-user" href="#" onClick={handleOnClickUser}>Doctors</a>
                     </li>
-                    <li>
-                        <a href="#" onClick={handleOnClickUser}>Receptionists</a>
+                    <li class="nav-item">
+                        <a  class="nav-link link-user" href="#" onClick={handleOnClickUser}>Receptionists</a>
                     </li>
                 </ul>
             </div>

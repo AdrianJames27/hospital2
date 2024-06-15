@@ -56,45 +56,70 @@ export default function PatientRegistration() {
     }
 
     return (
-        <div>
-            <h1>Patient Registration</h1>
+        
+            <div id="form" className="d-flex justify-content-center container-fluid vh-100 ">
+            <div className="formcon">
+            <h1 className="text-center lblform">Patient Registration</h1>
 
             <form onSubmit={handleOnSubmit}>
-                <label htmlFor="name">Name:</label>
+            <div className="row mb-4 form-group">
+                <label htmlFor="name" class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-10">
                 <input
                     type="text"
                     name="name"
+                    class="form-control"
                     placeholder="Enter your name"
                     onChange={handleOnInputChange}
                     required
-                /> <br/>
-                <label htmlFor="email">Email:</label>
+                /> 
+                </div>
+            </div>
+
+            <div className="row mb-4 form-group">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-10">
+                    <input
+                        type="email" 
+                        class="form-control" id="inputEmail3"
+                        name="email"
+                        placeholder="Enter you email"
+                        onChange={handleOnInputChange}
+                        required
+                    /> 
+                </div>
+            </div>
+
+            <div className="row mb-4 form-group">
+                <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password:</label>
+                <div className="col-sm-10">
+                    <div className="input-group">
+                        <input
+                            id="txtpass"
+                            className="form-control rounded"
+                            type={showPassword ? 'text' : 'password'}
+                            name="password"
+                            placeholder="Enter your password"
+                            onChange={handleOnInputChange}
+                            required
+                        />
+                       <button className="btn btn-outline-secondary" type="button" onClick={handleOnShowPassword}>
+                                    {showPassword ? 'Hide Password' : 'Show Password'}
+                        </button>
+                    </div>
+                 </div>
+            </div>
                 <input
-                    type="text"
-                    name="email"
-                    placeholder="Enter your email"
-                    onChange={handleOnInputChange}
-                    required
-                /> <br/>
-                <label htmlFor="password">Password:</label>
-                <input
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    placeholder="Enter your password"
-                    onChange={handleOnInputChange}
-                    required
-                />
-                <input
-                    type="button"
-                    onClick={handleOnShowPassword}
-                    value={showPassword ? 'Hide Password' : 'Show Password'}
-                /> <br/>
-                <input
+                    class="form-control"
+                     id="formbtn"
                     type="submit"
                     value={'Register Patient'}
                 />
             </form>
-            <Link to={'/'}>Go Back</Link>
+            <Link to={'/'}> <div className="d-grid gap-2 d-md-block">
+                            <button className="btnback"> &larr; Go Back</button>
+                        </div></Link>
+        </div>
         </div>
     );
 }

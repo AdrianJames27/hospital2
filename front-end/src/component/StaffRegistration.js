@@ -62,52 +62,79 @@ export default function StaffRegistration() {
     }
 
     return (
-        <div>
-            <h1>Staff Registration</h1>
+        <div id="form" className="d-flex justify-content-center container-fluid vh-100 ">
+            <div className="formcon">
+            <h1 className="text-center lblform">Staff Registration</h1>
 
             <form onSubmit={handleOnSubmit}>
-                <label htmlFor="name">Name:</label>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="name" class="col-sm-2 col-form-label">Name:</label>
+                    <div class="col-sm-10">
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Enter your name"
+                            onChange={handleOnInputChange}
+                            required
+                        /> 
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-sm-10">
+                        <input
+                            className="form-control"
+                            type="email" 
+                            name="email"
+                            placeholder="Enter your email"
+                            onChange={handleOnInputChange}
+                            required
+                        /> 
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="name" class="col-sm-2 col-form-label">Role:</label>
+                    <div class="col-sm-10">
+                        <select  class="form-select" name="role" onChange={handleOnInputChange} value={role}>
+                            <option disabled selected value={''}>Select Role</option>
+                            <option value={'admin'}>admin</option>
+                            <option value={'doctor'}>doctor</option>
+                            <option value={'receptionist'}>receptionist</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password:</label>
+                    <div className="col-sm-10">
+                        <div className="input-group">
+                            <input
+                            className="form-control rounded"
+                                type={showPassword ? 'text' : 'password'}
+                                name="password"
+                                placeholder="Enter your password"
+                                onChange={handleOnInputChange}
+                                required
+                            />
+                            <button className="btn btn-outline-secondary" type="button" onClick={handleOnShowPassword}>
+                                    {showPassword ? 'Hide Password' : 'Show Password'}
+                                </button>
+                        </div>
+                    </div>
+                </div>
                 <input
-                    type="text"
-                    name="name"
-                    placeholder="Enter your name"
-                    onChange={handleOnInputChange}
-                    required
-                /> <br/>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    name="email"
-                    placeholder="Enter your email"
-                    onChange={handleOnInputChange}
-                    required
-                /> <br/>
-                <label htmlFor="role">Role:</label>
-                <select name="role" onChange={handleOnInputChange} value={role}>
-                    <option disabled selected value={''}>Select Role</option>
-                    <option value={'admin'}>admin</option>
-                    <option value={'doctor'}>doctor</option>
-                    <option value={'receptionist'}>receptionist</option>
-                </select> <br/>
-                <label htmlFor="password">Password:</label>
-                <input
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    placeholder="Enter your password"
-                    onChange={handleOnInputChange}
-                    required
-                />
-                <input
-                    type="button"
-                    onClick={handleOnShowPassword}
-                    value={showPassword ? 'Hide Password' : 'Show Password'}
-                /> <br/>
-                <input
+                    class="form-control"
+                     id="formbtn"
                     type="submit"
                     value={'Register Staff'}
                 />
             </form>
-            <Link to={'/'}>Go Back</Link>
+            <Link to={'/'}> 
+                <div className="d-grid gap-2 d-md-block">
+                            <button className="btnback"> &larr; Go Back</button>
+                        </div>
+            </Link>
+            </div>
         </div>
     );
 }

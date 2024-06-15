@@ -144,7 +144,7 @@ export default function BookAppointment() {
     }
 
     return (
-        <div>
+        <div className="container">
             {(userSession.role === 'patient' && <PatientNavigation />) ||
                 (userSession.role === 'receptionist' && <StaffNavigation userRole={userSession.role} />
                 )}
@@ -152,7 +152,7 @@ export default function BookAppointment() {
                 <div>
                     <h1>Book Appointment with Doctor</h1>
                     {userSession.role === 'patient' &&
-                        <Link to="/hostpital/patient/manage_appointments">
+                        <Link to="/hospital/patient/manage_appointments">
                             Manage Appointments
                         </Link>
                     }
@@ -164,15 +164,21 @@ export default function BookAppointment() {
                         <p>There is no doctor</p>
                     ) : (
                         <>
+                        <div className="row gy-4" style={{ marginTop: '40px' }}>
                             {doctors.map(doctor => (
-                                <div key={doctor.id} style={{ border: '2px black solid', margin: '2rem' }}>
-                                    <p>{doctor.first_name} {doctor.last_name}</p>
-                                    <p>{doctor.specialization}</p>
-                                    <p>{doctor.license_number}</p>
-                                    <p>{doctor.phone}</p>
-                                    <button onClick={() => handleOnBookAppointment(doctor.id)}>Book Appointment</button>
+                                <div key={doctor.id} className="col-md-4">
+                                    <div className="card " style={{width: '20rem', height: '15rem'}}>
+                                        <div className="card-body ">
+                                        <h5 className="card-title fs-5"> DR. {doctor.first_name} {doctor.last_name}</h5>
+                                        <h6 className="card-subtitle mb-2 text-body-secondary">specialization : {doctor.specialization}</h6>
+                                            <p> License Number :{doctor.license_number}</p>
+                                            <p> Contact Number : {doctor.phone}</p>
+                                            <button onClick={() => handleOnBookAppointment(doctor.id)} className="btn btn-primary book">Book Appointment</button>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
+                        </div>
                         </>
                     )
                 )}
@@ -180,41 +186,64 @@ export default function BookAppointment() {
             <dialog ref={dialogRef}>
                 <h2>Book Appointment</h2>
                 <form onSubmit={handleOnSubmit}>
-                    {
-                        userSession.role === 'receptionist' &&
-                        <>
-                            <label>Select a Patient</label>
-                            <select required onChange={handleOnChangeSelect} value={selectedPatientId}>
-                                <option disabled value={''}>Select a Patient</option>
-                                {patients.map(patientMember => (
-                                    <option key={patientMember.id} value={patientMember.id}>
-                                        {patientMember.first_name} {patientMember.last_name}
-                                    </option>
-                                ))}
-                            </select> <br />
-                        </>
-                    }
-                    <label htmlFor="appointmentDate">Appointment Date</label>
-                    <input
-                        type="datetime-local"
-                        name="appointmentDate"
-                        onChange={handleOnChange}
-                        required
-                    /> <br />
-                    <label htmlFor="reason">Reason</label>
-                    <input
-                        type="text"
-                        name="reason"
-                        onChange={handleOnChange}
-                        required
-                    /> <br />
-                    <input
-                        type="submit"
-                        value={'Schedule an Appointment'}
-                    />
+                        {
+                            userSession.role === 'receptionist' &&
+                            <>
+                             <div className="row mb-4 form-group">
+                                <label htmlFor="name" class="col-sm-4 col-form-label">Select a Patient
+
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="form-select"  required onChange={handleOnChangeSelect} value={selectedPatientId}>
+                                        <option disabled value={''}>Select a Patient</option>
+                                        {patients.map(patientMember => (
+                                            <option key={patientMember.id} value={patientMember.id}>
+                                                {patientMember.first_name} {patientMember.last_name}
+                                            </option>
+                                        ))}
+                                    </select> 
+                                    </div>
+                                </div>
+                            </>
+                        }
+                            <div className="row mb-4 form-group">
+                                <label htmlFor="appointmentDate" class="col-sm-4 col-form-label">Appointment Date</label>
+                                <div class="col-sm-8">
+                                    <input
+                                        class="form-control"
+                                        type="datetime-local"
+                                        name="appointmentDate"
+                                        onChange={handleOnChange}
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row mb-4 form-group">
+
+                                <label htmlFor="reason" class="col-sm-4 col-form-label">Reason</label>
+                                <div class="col-sm-8">
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        name="reason"
+                                        onChange={handleOnChange}
+                                        required
+                                    /> 
+                                </div>
+                             </div>
+                             
+                                <input
+                                    class="form-control"
+                                     id="formbtn"
+                                    type="submit"
+                                    value={'Schedule an Appointment'}
+                                />
+                            
+                           
                 </form>
                 <br />
-                <button onClick={handleCloseDialog}>Close</button>
+                <button className="btnback app" onClick={handleCloseDialog}>Close</button>
             </dialog>
         </div>
     );

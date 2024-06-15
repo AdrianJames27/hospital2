@@ -156,106 +156,155 @@ export default function ManagePatientRecords() {
     }
 
     return (
-        <div>
+        <div className='container'>
             <StaffNavigation userRole={userSession.role} />
-            <h1>Manage Patient Records</h1>
+            <h1 className='lbl'>Manage Patient Records</h1>
             <div>
                 <form onSubmit={handleOnSubmit}>
-                    <label htmlFor="firstName">First Name:</label>
-                    <input
-                        type="text"
-                        name="firstName"
-                        placeholder="Enter your first name"
-                        value={patientData.firstName}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Enter your last name"
-                        value={patientData.lastName}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
-                    <label htmlFor="dateOfBirth">Date of Birth:</label>
-                    <input
-                        type="date"
-                        name="dateOfBirth"
-                        placeholder="Enter your birthdate"
-                        value={patientData.dateOfBirth}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
-                    <label htmlFor="gender">Gender</label>
-                    <select
-                        required
-                        name="gender"
-                        value={patientData.gender}
-                        onChange={handleOnChangeInput}
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    >
-                        <option disabled value={''}>Select Gender:</option>
-                        {genderList.map((gender, index) => (
-                            <option key={index} value={gender}>{gender}</option>
-                        ))}
-                    </select> <br />
-                    <label htmlFor="address">Address:</label>
-                    <input
-                        type="text"
-                        name="address"
-                        placeholder="Enter your address"
-                        value={patientData.address}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
-                    <label htmlFor="phone">Phone:</label>
-                    <input
-                        type="text"
-                        name="phone"
-                        placeholder="Enter your phone number"
-                        value={patientData.phone}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Enter your email"
-                        value={patientData.email}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
-                    <label htmlFor="emergencyContact">Emergency Contact:</label>
-                    <input
-                        type="text"
-                        name="emergencyContact"
-                        placeholder="Enter your emergency contact"
-                        value={patientData.emergencyContact}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
-                    <label htmlFor="medicalHistory">Medical History:</label>
-                    <input
-                        type="text"
-                        name="medicalHistory"
-                        placeholder="Enter your medical history"
-                        value={patientData.medicalHistory}
-                        onChange={handleOnChangeInput}
-                        required
-                        disabled={userSession.role === 'doctor' && !isEditing}
-                    /> <br />
+                <div className="row mb-4 form-group">
+                    
+                    <label htmlFor="name" class="col-sm-2 col-form-label">First Name:</label>
+                       <div class="col-sm-10">
+                            <input 
+                                    class="form-control"
+                                    type="text"
+                                    name="firstName"
+                                    placeholder="Enter your first name"
+                                    value={patientData.firstName}
+                                    onChange={handleOnChangeInput}
+                                    required
+                                    disabled={userSession.role === 'doctor' && !isEditing}
+                                /> 
+                        </div>
+                        
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="lastName" class="col-sm-2 col-form-label">Last Name:</label>
+                    <div class="col-sm-10">
+                        <input
+                            type="text"
+                            name="lastName"
+                            className="form-control"
+                            placeholder="Enter your last name"
+                            value={patientData.lastName}
+                            onChange={handleOnChangeInput}
+                            required
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        /> 
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="dateOfBirth " class="col-sm-2 col-form-label">Date of Birth:</label>
+                    <div class="col-sm-10">
+                        <input
+                        className="form-control"
+                            type="date"
+                            name="dateOfBirth"
+                            placeholder="Enter your birthdate"
+                            value={patientData.dateOfBirth}
+                            onChange={handleOnChangeInput}
+                            required
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        /> 
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="gender" class="col-sm-2 col-form-label">Gender</label>
+                    <div class="col-sm-10">
+                        <select
+                             class="form-select"
+                            required
+                            name="gender"
+                            value={patientData.gender}
+                            onChange={handleOnChangeInput}
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        >
+                            <option disabled value={''}>Select Gender:</option>
+                            {genderList.map((gender, index) => (
+                                <option key={index} value={gender}>{gender}</option>
+                            ))}
+                        </select> 
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="address" class="col-sm-2 col-form-label">Address:</label>
+                    <div class="col-sm-10">
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="address"
+                            placeholder="Enter your address"
+                            value={patientData.address}
+                            onChange={handleOnChangeInput}
+                            required
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        />
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="phone" class="col-sm-2 col-form-label">Phone:</label>
+                    <div class="col-sm-10">
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            value={patientData.phone}
+                            onChange={handleOnChangeInput}
+                            required
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        /> 
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="email" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-sm-10">
+                        <input
+                        className="form-control"
+                            type="text"
+                            name="email"
+                            placeholder="Enter your email"
+                            value={patientData.email}
+                            onChange={handleOnChangeInput}
+                            required
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        /> 
+                    </div>
+                </div>
+                < div className="row mb-4 form-group">
+                    <label htmlFor="emergencyContact" class="col-sm-2 col-form-label">Emergency Contact:</label>
+                    <div class="col-sm-10">
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="emergencyContact"
+                            placeholder="Enter your emergency contact"
+                            value={patientData.emergencyContact}
+                            onChange={handleOnChangeInput}
+                            required
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        />
+                    </div>
+                </div>
+                <div className="row mb-4 form-group">
+                    <label htmlFor="medicalHistory" class="col-sm-2 col-form-label">Medical History:</label>
+                    <div class="col-sm-10">
+                        <input
+                        class="form-control"
+                            type="text"
+                            name="medicalHistory"
+                            placeholder="Enter your medical history"
+                            value={patientData.medicalHistory}
+                            onChange={handleOnChangeInput}
+                            required
+                            disabled={userSession.role === 'doctor' && !isEditing}
+                        /> 
+                    </div>
+                </div>
                     {(userSession.role === 'admin' || userSession.role === 'receptionist' || isEditing) && (
                         <input
+                        class="form-control"
+                        id="formbtn"
                             type="submit"
                             value={isEditing ? 'Update Patient Record' : 'Add Patient Record'}
                         />
@@ -263,6 +312,7 @@ export default function ManagePatientRecords() {
                     {
                         isEditing &&
                         <input
+                        
                             type="button"
                             value={'Cancel'}
                             onClick={handleOnClickCancel}
@@ -271,13 +321,15 @@ export default function ManagePatientRecords() {
                 </form>
             </div>
             <div>
+                <h1 className="lbl">Patient Records</h1>
                 {isPatientLoading ? (
                     <p>Loading patient records...</p>
                 ) : (
                     (!patients || patients.length === 0) ? (
                         <p>Patient record list is empty</p>
                     ) : (
-                        <table>
+                        
+                        <table class="table table-striped table-color">
                             <thead>
                                 <tr>
                                     <th>Patient Name</th>
@@ -303,9 +355,10 @@ export default function ManagePatientRecords() {
                                         <td>{patient.emergency_contact}</td>
                                         <td>{patient.medical_history}</td>
                                         <td>
-                                            <button onClick={() => handleOnEdit(patient)}>Edit</button>
+                                            <button className = "edit" onClick={() => handleOnEdit(patient)}>Edit</button>
                                             {userSession.role === 'admin' && (
-                                                <button onClick={() => handleOnDelete(patient.id)}>Delete</button>
+                                                <button
+                                                className = "delete" onClick={() => handleOnDelete(patient.id)}>Delete</button>
                                             )}
                                         </td>
                                     </tr>

@@ -1,13 +1,199 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+#form{
+  background-image: url(./assets/hospitalbg.png);  
+  background-size: cover;
+  background-repeat: no-repeat;
+ 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.navbar.fixed-top{
+  background-color: #183D5A;
+  height: 80px !important;
+}
+.nav-link{
+  color: #fff!important;
+  font-size: 15px !important;
+  margin-right: 20px !important;
+  font-weight: 500 !important;
+  margin-left: 20px !important;
+}
+#logout{
+  align-items: end;
+  margin-left: 50px;
+  background-color: #4E7490!important;
+  border-color: #fff !important;
+  padding: 10px !important;
+  
+}
+#logout:hover{
+  background-color: #fff !important;
+  color: #2A628C;
+ 
+}
+
+#txtpass{
+ 
+}
+
+#logincon{
+  margin-bottom: 80px;
+  margin-top: 100px;
+
+}
+
+
+.formcon{
+  width: 600px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border: 0.5px solid #DFE3E6;
+  padding: 35px;
+  border-radius: 10px;
+  background-color: white;
+
+}
+.lblform{
+  margin-bottom: 40px;
+  margin-top: 0px;
+  color: #2A628C;
+}
+
+.reginfocon{
+  margin-top: 20px;
+}
+
+#formbtn{
+  margin-top: 20px;
+  background-color: #2A628C;
+  color:white;
+  height: 45px;
+  font-weight: 600;
+  font-size: large;
+ 
+  
+}
+
+.btnback{
+  margin-top: 50px;
+  background-color: #3D7CA7;
+  color:white;
+  border-radius: 10px ;
+  border: 0.5px solid #DFE3E6;
+  height: 45px;
+  width: 100px;
+  font-weight: 300;
+  font-size: medium;
+}
+
+.lbl{
+  margin-top: 100px;
+  color: #5FAACC;
+  margin-bottom: 50px;
+}
+
+h6 {
+  text-transform: uppercase;
+  margin-bottom: 30px !important;
+}
+h5{
+  color: #3D7CA7 !important;
+  margin-bottom: 15px !important;
+}
+
+.book{
+  width: 230px;
+  font-weight: bold;
+  border-color: #4E7490 !important;
+  border-width: 3px;
+  position: absolute;
+  background-color: #4189bd !important;
+  bottom: 10px; 
+  left: 50%;
+  color: #ffffff !important;
+  transform: translateX(-50%); 
+}
+
+dialog {
+  width: 600px;
+  border: 0.5px solid #98a8b4;
+  padding: 35px;
+  border-radius: 10px;
+  background-color: white;
+
+}
+
+h2{
+  color: #214e70 !important;
+  margin-bottom: 20px !important;
+}
+.app{
+  margin-top: 10px;
+ 
+}
+
+.manage-users{
+  margin-top: 100px;
+}
+
+.navmanage-users{
+  margin-top: 40px;
+}
+
+.link-user{
+  color: #5FAACC !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+  
+}
+
+.lblform{
+  color: #4885b4 !important;
+  margin-top: 50px;
+}
+
+.manageuser-con{
+  margin-left: 1000px;
+}
+
+th{
+  color: #4E7490 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  
+}
+
+td{
+  color: #283138 !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+}
+
+.edit{
+  background-color: #6791ad !important;
+  color: white;
+  border-color: #2a658c !important;
+  width: 100px !important;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  margin-right: 2px !important;
+  margin-bottom: 5px;
+}
+
+.delete{
+  background-color: #e04f4f !important;
+  color: white;
+  border-color: #e04f4f !important;
+  width: 100px !important;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  margin-right: 2px !important;
+}
+
+.doc-man{
+  margin-top: 100px;
 }

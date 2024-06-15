@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import UserLogin from './component/UserLogin';
 import StaffPanel from './component/StaffPanel';
 import PatientPanel from './component/PatientPanel';

@@ -40,7 +40,7 @@ export default function ViewAppoinments() {
         fetchData();
     }, []);
 
-    function findPatient(patientId) {
+    function findPatientById(patientId) {
         if (!patients || patients.length === 0) {
             return patientId;
         } else {
@@ -49,7 +49,7 @@ export default function ViewAppoinments() {
         }
     }
 
-    function findDoctor(doctorId) {
+    function findDoctorById(doctorId) {
         if (!doctors || doctors.length === 0) {
             return doctorId;
         } else {
@@ -85,8 +85,8 @@ export default function ViewAppoinments() {
                             {appointments.map(appointment => (
                                 <tr key={appointment.id}>
                                     <td>{appointment.id}</td>
-                                    <td>{findPatient(appointment.patient_id)}</td>
-                                    <td>{findDoctor(appointment.doctor_id)}</td>
+                                    <td>{findPatientById(appointment.patient_id)}</td>
+                                    <td>{findDoctorById(appointment.doctor_id)}</td>
                                     <td>{appointment.appointment_date}</td>
                                     <td>{appointment.status}</td>
                                     <td>{appointment.reason}</td>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import PatientNavigation from "./PatientNavigation";
 import usePatient from "../util/usePatient";
+import useDoctor from "../util/useDoctor";
 import useMedicalRecord from "../util/useMedicalRecord";
 import { useEffect } from "react";
 
@@ -18,6 +19,12 @@ export default function PatientMedicalRecords() {
     } = usePatient();
 
     const {
+        isDoctorLoading,
+        doctors,
+        fetchDoctors
+    } = useDoctor();
+
+    const {
         isMedicalRecordLoading,
         medicalRecord,
         showMedicalRecords
@@ -26,6 +33,7 @@ export default function PatientMedicalRecords() {
     useEffect(() => {
         async function fetchData() {
             await showPatient(userSession.email);
+            await fetchDoctors();
         }
 
         fetchData();
@@ -42,11 +50,20 @@ export default function PatientMedicalRecords() {
         fetchData();
     }, [patient]);
 
+    function findDoctorById(doctorId) {
+        if (!doctors || doctors.length === 0) {
+            return doctorId;
+        } else {
+            const doctor = doctors.find(doctor => doctor.id === doctorId);
+            return (`${doctor.first_name} ${doctor.last_name}`);
+        }
+    }
+
     return (
         <div>
             <PatientNavigation />
             <h1>Medical Records</h1>
-            {isPatientLoading || isMedicalRecordLoading ? (
+            {isPatientLoading || isDoctorLoading || isMedicalRecordLoading ? (
                 <p>Loading medical records...</p>
             ) : (
                 (!medicalRecord || medicalRecord.length === 0) ? (
@@ -55,6 +72,7 @@ export default function PatientMedicalRecords() {
                     <table>
                         <thead>
                             <tr>
+                                <th>Doctor Name</th>
                                 <th>Visit Date</th>
                                 <th>Diagnosis</th>
                                 <th>Treatment</th>
@@ -67,6 +85,7 @@ export default function PatientMedicalRecords() {
                                 if (id === record.patient_id) {
                                     return (
                                         <tr key={record.id}>
+                                            <td>{findDoctorById(record.doctor_id)}</td>
                                             <td>{record.visit_date}</td>
                                             <td>{record.diagnosis}</td>
                                             <td>{record.treatment}</td>

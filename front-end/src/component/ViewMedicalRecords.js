@@ -40,7 +40,7 @@ export default function ViewMedicalRecords() {
         fetchData();
     }, []);
 
-    function findPatient(patientId) {
+    function findPatientById(patientId) {
         if (!patients || patients.length === 0) {
             return patientId;
         } else {
@@ -49,7 +49,7 @@ export default function ViewMedicalRecords() {
         }
     }
 
-    function findDoctor(doctorId) {
+    function findDoctorById(doctorId) {
         if (!doctors || doctors.length === 0) {
             return doctorId;
         } else {
@@ -86,8 +86,8 @@ export default function ViewMedicalRecords() {
                             {medicalRecords.map(medicalRecord => (
                                 <tr key={medicalRecord.id}>
                                     <td>{medicalRecord.id}</td>
-                                    <td>{findPatient(medicalRecord.patient_id)}</td>
-                                    <td>{findDoctor(medicalRecord.doctor_id)}</td>
+                                    <td>{findPatientById(medicalRecord.patient_id)}</td>
+                                    <td>{findDoctorById(medicalRecord.doctor_id)}</td>
                                     <td>{medicalRecord.visit_date}</td>
                                     <td>{medicalRecord.diagnosis}</td>
                                     <td>{medicalRecord.treatment}</td>

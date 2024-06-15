@@ -39,13 +39,17 @@ export default function ManageAppointments() {
 
     const {
         isPatientLoading,
+        patients,
         patient,
+        fetchPatients,
         showPatient
     } = usePatient();
 
     const {
         isDoctorLoading,
+        doctors,
         doctor,
+        fetchDoctors,
         showDoctor
     } = useDoctor();
 
@@ -62,8 +66,10 @@ export default function ManageAppointments() {
         async function fetchData() {
             if (userSession.role === 'patient') {
                 await showPatient(userSession.email);
+                await fetchDoctors();
             } else {
                 await showDoctor(userSession.email);
+                await fetchPatients();
             }
         }
 
@@ -104,6 +110,24 @@ export default function ManageAppointments() {
         // Check if there are any scheduled appointments
         setHasScheduled(appointment.some(appointment => appointment.status === 'scheduled'));
     }, [appointment]);
+
+    function displayPatientNameById(patientId) {
+        if (!patients || patients.length === 0) {
+            return patientId;
+        } else {
+            const patient = patients.find(patient => patient.id === patientId);
+            return (`${patient.first_name} ${patient.last_name}`);
+        }
+    }
+
+    function displayDoctorNameById(doctorId) {
+        if (!doctors || doctors.length === 0) {
+            return doctorId;
+        } else {
+            const doctor = doctors.find(doctor => doctor.id === doctorId);
+            return (`${doctor.first_name} ${doctor.last_name}`);
+        }
+    }
 
     function handleOnChange(e) {
         const { name, value } = e.target;
@@ -170,9 +194,9 @@ export default function ManageAppointments() {
 
     return (
         <div>
-            {(userSession.role === 'patient' && <PatientNavigation />) || (
-                userSession.role === 'doctor' && <StaffNavigation userRole={userSession.role} />
-            )}
+            {(userSession.role === 'patient' && <PatientNavigation />) ||
+                (userSession.role === 'doctor' && <StaffNavigation userRole={userSession.role} />)
+            }
             <h1>Manage Appointments</h1>
             {(isPatientLoading || isDoctorLoading || isAppointmentLoading) ? (
                 <p>Loading appointments...</p>
@@ -222,6 +246,9 @@ export default function ManageAppointments() {
                         <table>
                             <thead>
                                 <tr>
+                                    {(userSession.role === 'patient' && <th>Doctor Name</th>) ||
+                                        (userSession.role === 'doctor' && <th>Patient Name</th>)
+                                    }
                                     <th>Appointment Date</th>
                                     <th>Status</th>
                                     <th>Reason</th>
@@ -233,6 +260,9 @@ export default function ManageAppointments() {
                                     if (appointment.status === 'scheduled') {
                                         return (
                                             <tr key={appointment.id}>
+                                                {(userSession.role === 'patient' && <td>{displayDoctorNameById(appointment.doctor_id)}</td>) ||
+                                                    (userSession.role === 'doctor' && <td>{displayPatientNameById(appointment.patient_id)}</td>)
+                                                }
                                                 <td>{appointment.appointment_date}</td>
                                                 <td>{appointment.status}</td>
                                                 <td>{appointment.reason}</td>

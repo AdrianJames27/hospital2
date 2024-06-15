@@ -218,7 +218,7 @@ export default function ManageMedicalRecords() {
                     {
                         isEditing &&
                         <input
-
+                            id = "formbtn"
                             type="button"
                             value={'Cancel'}
                             onClick={handleOnClickCancel}

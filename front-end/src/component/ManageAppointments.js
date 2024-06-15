@@ -169,58 +169,70 @@ export default function ManageAppointments() {
     }
 
     return (
-        <div>
+        <div className="container">
             {(userSession.role === 'patient' && <PatientNavigation />) || (
                 userSession.role === 'doctor' && <StaffNavigation userRole={userSession.role} />
             )}
-            <h1>Manage Appointments</h1>
+            <h1 class="lbl">Manage Appointments</h1>
             {(isPatientLoading || isDoctorLoading || isAppointmentLoading) ? (
-                <p>Loading appointments...</p>
+                <p className="norec">Loading appointments...</p>
             ) : (
                 (!hasScheduled ? (
-                    <p>No Scheduled Appointment/s</p>
+                    <p className="norec">No Scheduled Appointment/s</p>
                 ) : (
                     <>
-                        <div>
+                        <div class = "appcon">
                             <form onSubmit={handleOnSubmit}>
-                                <label htmlFor="appointmentDate">Appointment Date</label>
-                                <input
-                                    type="datetime-local"
-                                    name="appointmentDate"
-                                    disabled={!isEditing || (userSession.role === 'doctor' && isEditing)}
-                                    value={appointmentData.appointmentDate}
-                                    onChange={handleOnChange}
-                                /> <br />
-                                <label htmlFor="status">Status</label>
-                                <select
-                                    disabled={!isEditing || (userSession.role === 'patient' && isEditing)}
-                                    name="status"
-                                    onChange={handleOnChange}
-                                    value={appointmentData.status}
-                                >
-                                    <option disabled value={''}>Select Status</option>
-                                    {statusList.map((status, index) => (
-                                        <option key={index} value={status}>{status}</option>
-                                    ))}
-                                </select> <br />
+                                <div className="row mb-4 form-group">
+                                    <label  class="col-form-label"htmlFor="appointmentDate">Appointment Date</label>
+                                    <input
+                                        class="form-control"
+                                        type="datetime-local"
+                                        name="appointmentDate"
+                                        disabled={!isEditing || (userSession.role === 'doctor' && isEditing)}
+                                        value={appointmentData.appointmentDate}
+                                        onChange={handleOnChange}
+                                    /> 
+                                </div>
+
+                                <div className="row mb-4 form-group">
+                                    <label  class="col-form-label" htmlFor="status">Status</label>
+                                    <select class="form-select"
+                                        disabled={!isEditing || (userSession.role === 'patient' && isEditing)}
+                                        name="status"
+                                        onChange={handleOnChange}
+                                        value={appointmentData.status}
+                                    >
+                                        <option disabled value={''}>Select Status</option>
+                                        {statusList.map((status, index) => (
+                                            <option key={index} value={status}>{status}</option>
+                                        ))}
+                                    </select> 
+                                </div>
                                 {
                                     isEditing &&
                                     <>
+                                     <div className="row mb-4 form-group">
                                         <input
+                                            className="btn-save"
                                             type="submit"
                                             value={userSession.role === 'patient' ? 'Update Appointment' : 'Update Status'}
                                         />
                                         <input
+                                            className="btn-cancel"
                                             type="button"
                                             value={'Cancel'}
                                             onClick={handleOnClickCancel}
                                         />
+                                    </div>
                                     </>
                                 }
                             </form>
                         </div>
-                        <table>
-                            <thead>
+                        <div>
+                            <h1 class ="lblmedrec app"> Scheduled Appointments </h1>
+                        <table class ="table table-striped">
+                            <thead >
                                 <tr>
                                     <th>Appointment Date</th>
                                     <th>Status</th>
@@ -237,7 +249,7 @@ export default function ManageAppointments() {
                                                 <td>{appointment.status}</td>
                                                 <td>{appointment.reason}</td>
                                                 <td>
-                                                    <button onClick={() => handleOnClickResched(appointment)}>
+                                                    <button class = "edit-mr"onClick={() => handleOnClickResched(appointment)}>
                                                         {userSession.role === 'patient' ? 'Reschedule' : 'Edit Status'}
                                                     </button>
                                                     {
@@ -255,6 +267,7 @@ export default function ManageAppointments() {
                                 })}
                             </tbody>
                         </table>
+                        </div>
                     </>
                 ))
             )}

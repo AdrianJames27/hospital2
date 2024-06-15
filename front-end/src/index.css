@@ -334,10 +334,19 @@ label{
  
 }
 .norec{
-  margin-top: 20px;
+  margin-top: 40px;
   border: 0.5px solid #DFE3E6;
   padding: 200px !important;
   color: #6f7579;
   text-align: center;
   border-radius: 10px;
+}
+
+.app{
+  margin-top: 100px;
+}
+
+.appcon{
+  border: 0.5px solid #DFE3E6;
+  padding: 40px !important;
 }

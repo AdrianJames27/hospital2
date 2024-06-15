@@ -208,7 +208,7 @@ export default function ManageAppointments() {
                                     <>
                                         <input
                                             type="submit"
-                                            value={'Edit Appointment'}
+                                            value={userSession.role === 'patient' ? 'Update Appointment' : 'Update Status'}
                                         />
                                         <input
                                             type="button"
@@ -238,7 +238,7 @@ export default function ManageAppointments() {
                                                 <td>{appointment.reason}</td>
                                                 <td>
                                                     <button onClick={() => handleOnClickResched(appointment)}>
-                                                        {userSession.role === 'patient' ? 'Reschedule' : 'Update Status'}
+                                                        {userSession.role === 'patient' ? 'Reschedule' : 'Edit Status'}
                                                     </button>
                                                     {
                                                         userSession.role === 'patient' &&

@@ -130,7 +130,7 @@ export default function BookAppointment() {
             patientId = selectedPatientId;
         }
 
-        if (userSession.role === 'patient' || userSession.role === 'receptionist' || patient.length !== 0) {
+        if ((userSession.role === 'patient' && patient.length !== 0) || userSession.role === 'receptionist') {
             const appointment = {
                 patientId: patientId,
                 doctorId: selectedDoctorId,

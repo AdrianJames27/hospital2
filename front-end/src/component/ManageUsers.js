@@ -178,10 +178,16 @@ export default function ManageUser() {
 
     function displayUserAs(userList) {
         return (
+<<<<<<< HEAD
             <> 
             <div className="container manageuser-con">
                 <h3 class = "lblform">{selectedUser} Form</h3>
                 <div className="container">
+=======
+            <>
+                <h3>{selectedUser.substring(0, selectedUser.length - 1)}</h3>
+                <div>
+>>>>>>> 87ba348ab3a8f77bce880d5f24d2652ee67ef4a8
                     <form onSubmit={handleOnSubmit}>
                     <div className="row mb-4 form-group">
                                 <label htmlFor="name" class="col-sm-2 col-form-label">Name:</label>

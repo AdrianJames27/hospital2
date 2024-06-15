@@ -179,7 +179,7 @@ export default function ManageUser() {
     function displayUserAs(userList) {
         return (
             <>
-                <h3>{selectedUser}</h3>
+                <h3>{selectedUser.substring(0, selectedUser.length - 1)}</h3>
                 <div>
                     <form onSubmit={handleOnSubmit}>
                         <label htmlFor="name">Name:</label>

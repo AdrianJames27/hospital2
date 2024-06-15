@@ -301,10 +301,10 @@ export default function ManagePatientRecords() {
                         /> 
                     </div>
                 </div>
+                <div class = "upbtncon">
                     {(userSession.role === 'admin' || userSession.role === 'receptionist' || isEditing) && (
                         <input
-                        class="form-control"
-                        id="formbtn"
+                        class="btn-save"
                             type="submit"
                             value={isEditing ? 'Update Patient Record' : 'Add Patient Record'}
                         />
@@ -312,12 +312,13 @@ export default function ManagePatientRecords() {
                     {
                         isEditing &&
                         <input
-                        
+                             class="btn-cancel"
                             type="button"
                             value={'Cancel'}
                             onClick={handleOnClickCancel}
                         />
                     }
+                </div>
                 </form>
             </div>
             <div>

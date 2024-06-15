@@ -253,7 +253,7 @@ td{
 }
 
 .btn-save{
-  background-color: #73d378 !important;
+  background-color: #58a89e !important;
   color: white;
   width: 200px !important;
   height: 40px;
@@ -349,8 +349,20 @@ label{
 .appcon{
   border: 0.5px solid #DFE3E6;
   padding: 40px !important;
+  margin-top: 100px;
 }
 
 .prlbl{
   margin-top: 10px;
+}
+
+.upbtncon {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; 
+  margin-top: 10px; 
+}
+
+.btnh:hover {
+  transform: scale(1.1); /* Zooms in the button on hover */
 }

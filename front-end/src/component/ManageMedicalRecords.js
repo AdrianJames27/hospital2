@@ -208,22 +208,23 @@ export default function ManageMedicalRecords() {
                     /> 
 
                 </div>
-
+                <div class = "upbtncon">
                     <input
-                        id="formbtn"
-                        class="form-control"
+                       
+                        class="btn-save"
                         type="submit"
                         value={isEditing ? 'Update Medical Record' : 'Add Medical Record'}
                     />
                     {
                         isEditing &&
                         <input
-                            id = "formbtn"
+                            class="btn-cancel"
                             type="button"
                             value={'Cancel'}
                             onClick={handleOnClickCancel}
                         />
                     }
+                </div>
                 </form>
                 </div>
                 <div class="tblcon">

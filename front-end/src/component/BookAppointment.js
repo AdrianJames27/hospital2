@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PatientNavigation from './PatientNavigation';
 import useDoctor from "../util/useDoctor";
 import usePatient from "../util/usePatient";
@@ -33,7 +33,7 @@ export default function BookAppointment() {
                 navigate('/hospital/patient/book_appointment');
                 break;
             case 'receptionist':
-                navigate('/hospital/patient/book_appointment');
+                navigate('/hospital/receptionist/book_appointment');
                 break;
             default:
                 navigate('/');
@@ -42,11 +42,11 @@ export default function BookAppointment() {
     }, []);
 
     const [appointmentData, setAppointmentData] = useState({
+        patientId: '',
         appointmentDate: '',
         reason: ''
     });
     const [selectedDoctorId, setSelectedDoctorId] = useState(null);
-    const [selectedPatientId, setSelectedPatientId] = useState('');
     const dialogRef = useRef(null);
 
 
@@ -85,16 +85,12 @@ export default function BookAppointment() {
     useEffect(() => {
         if (!hasAppointmentError) {
             setAppointmentData({
+                patientId: '',
                 appointmentDate: '',
                 reason: ''
             });
         }
     }, [hasAppointmentError]);
-
-    function handleOnChangeSelect(e) {
-        const { value } = e.target;
-        setSelectedPatientId(value);
-    }
 
     function handleOnBookAppointment(doctorId) {
         setSelectedDoctorId(doctorId);
@@ -104,6 +100,11 @@ export default function BookAppointment() {
     function handleCloseDialog() {
         dialogRef.current.close();
         setSelectedDoctorId(null);
+        setAppointmentData({
+            patientId: '',
+            appointmentDate: '',
+            reason: ''
+        });
     }
 
     function handleOnChange(e) {
@@ -127,7 +128,7 @@ export default function BookAppointment() {
             const [{ id }] = patient;
             patientId = id;
         } else if (userSession.role === 'receptionist') {
-            patientId = selectedPatientId;
+            patientId = appointmentData.patientId;
         }
 
         if ((userSession.role === 'patient' && patient.length !== 0) || userSession.role === 'receptionist') {
@@ -138,7 +139,7 @@ export default function BookAppointment() {
                 status: 'scheduled',
                 reason: appointmentData.reason
             };
-    
+
             await bookAppointment(appointment);
         }
     }
@@ -159,21 +160,21 @@ export default function BookAppointment() {
                         <p className="norec">There is no doctor</p>
                     ) : (
                         <>
-                        <div className="row gy-4" style={{ marginTop: '40px' }}>
-                            {doctors.map(doctor => (
-                                <div key={doctor.id} className="col-md-4">
-                                    <div className="card " style={{width: '20rem', height: '15rem'}}>
-                                        <div className="card-body ">
-                                        <h5 className="card-title fs-5"> DR. {doctor.first_name} {doctor.last_name}</h5>
-                                        <h6 className="card-subtitle mb-2 text-body-secondary">specialization : {doctor.specialization}</h6>
-                                            <p> License Number :{doctor.license_number}</p>
-                                            <p> Contact Number : {doctor.phone}</p>
-                                            <button onClick={() => handleOnBookAppointment(doctor.id)} className="btn btn-primary book">Book Appointment</button>
+                            <div className="row gy-4" style={{ marginTop: '40px' }}>
+                                {doctors.map(doctor => (
+                                    <div key={doctor.id} className="col-md-4">
+                                        <div className="card " style={{ width: '20rem', height: '15rem' }}>
+                                            <div className="card-body ">
+                                                <h5 className="card-title fs-5"> DR. {doctor.first_name} {doctor.last_name}</h5>
+                                                <h6 className="card-subtitle mb-2 text-body-secondary">specialization : {doctor.specialization}</h6>
+                                                <p> License Number : {doctor.license_number}</p>
+                                                <p> Contact Number : {doctor.phone}</p>
+                                                <button onClick={() => handleOnBookAppointment(doctor.id)} className="btn btn-primary book">Book Appointment</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
                         </>
                     )
                 )}
@@ -181,61 +182,68 @@ export default function BookAppointment() {
             <dialog ref={dialogRef}>
                 <h2>Book Appointment</h2>
                 <form onSubmit={handleOnSubmit}>
-                        {
-                            userSession.role === 'receptionist' &&
-                            <>
-                             <div className="row mb-4 form-group">
+                    {userSession.role === 'receptionist' &&
+                        <>
+                            <div className="row mb-4 form-group">
                                 <label htmlFor="name" class="col-sm-4 col-form-label">Select a Patient
 
                                 </label>
                                 <div class="col-sm-8">
-                                    <select class="form-select"  required onChange={handleOnChangeSelect} value={selectedPatientId}>
+                                    <select
+                                        class="form-select"
+                                        required
+                                        name="patientId"
+                                        onChange={handleOnChange}
+                                        value={appointmentData.patientId}
+                                    >
                                         <option disabled value={''}>Select a Patient</option>
                                         {patients.map(patientMember => (
                                             <option key={patientMember.id} value={patientMember.id}>
                                                 {patientMember.first_name} {patientMember.last_name}
                                             </option>
                                         ))}
-                                    </select> 
-                                    </div>
-                                </div>
-                            </>
-                        }
-                            <div className="row mb-4 form-group">
-                                <label htmlFor="appointmentDate" class="col-sm-4 col-form-label">Appointment Date</label>
-                                <div class="col-sm-8">
-                                    <input
-                                        class="form-control"
-                                        type="datetime-local"
-                                        name="appointmentDate"
-                                        onChange={handleOnChange}
-                                        required
-                                    />
+                                    </select>
                                 </div>
                             </div>
+                        </>
+                    }
+                    <div className="row mb-4 form-group">
+                        <label htmlFor="appointmentDate" class="col-sm-4 col-form-label">Appointment Date</label>
+                        <div class="col-sm-8">
+                            <input
+                                class="form-control"
+                                type="datetime-local"
+                                name="appointmentDate"
+                                value={appointmentData.appointmentDate}
+                                onChange={handleOnChange}
+                                required
+                            />
+                        </div>
+                    </div>
 
-                            <div className="row mb-4 form-group">
+                    <div className="row mb-4 form-group">
 
-                                <label htmlFor="reason" class="col-sm-4 col-form-label">Reason</label>
-                                <div class="col-sm-8">
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        name="reason"
-                                        onChange={handleOnChange}
-                                        required
-                                    /> 
-                                </div>
-                             </div>
-                             
-                                <input
-                                    class="form-control"
-                                     id="formbtn"
-                                    type="submit"
-                                    value={'Schedule an Appointment'}
-                                />
-                            
-                           
+                        <label htmlFor="reason" class="col-sm-4 col-form-label">Reason</label>
+                        <div class="col-sm-8">
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="reason"
+                                value={appointmentData.reason}
+                                onChange={handleOnChange}
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <input
+                        class="form-control"
+                        id="formbtn"
+                        type="submit"
+                        value={'Schedule an Appointment'}
+                    />
+
+
                 </form>
                 <br />
                 <button className="btnback app" onClick={handleCloseDialog}>Close</button>

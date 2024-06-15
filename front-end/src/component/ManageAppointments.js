@@ -193,11 +193,11 @@ export default function ManageAppointments() {
     }
 
     return (
-        <div>
+        <div class = "container app"> 
             {(userSession.role === 'patient' && <PatientNavigation />) ||
                 (userSession.role === 'doctor' && <StaffNavigation userRole={userSession.role} />)
             }
-            <h1>Manage Appointments</h1>
+            <h1 class="lbl">Manage Appointments</h1>
             {(isPatientLoading || isDoctorLoading || isAppointmentLoading) ? (
                 <p className="norec">Loading appointments...</p>
             ) : (
@@ -205,7 +205,7 @@ export default function ManageAppointments() {
                     <p className="norec">No Scheduled Appointment/s</p>
                 ) : (
                     <>
-                        <div class = "appcon">
+                        <div class = " container appcon">
                             <form onSubmit={handleOnSubmit}>
                                 <div className="row mb-4 form-group">
                                     <label  class="col-form-label"htmlFor="appointmentDate">Appointment Date</label>
@@ -233,7 +233,9 @@ export default function ManageAppointments() {
                                         ))}
                                     </select> 
                                 </div>
+                                <div class = "upbtncon">
                                 {
+
                                     isEditing &&
                                     <>
                                      <div className="row mb-4 form-group">
@@ -251,9 +253,10 @@ export default function ManageAppointments() {
                                     </div>
                                     </>
                                 }
+                            </div>
                             </form>
                         </div>
-                        <div>
+                        <div class = "container">
                             <h1 class ="lblmedrec app"> Scheduled Appointments </h1>
                         <table class ="table table-striped">
                             <thead >

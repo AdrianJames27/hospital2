@@ -256,22 +256,24 @@ export default function ManageUser() {
                                 </button>
                                     </div>
                                 </div>
-                    </div>
-                                <input
-                                class="form-control"
-                     id="formbtn"
-                                    type="submit"
-                                    value={isEditing ? `Update ${selectedUser.substring(0, selectedUser.length - 1)}`
-                                        : `Add ${selectedUser.substring(0, selectedUser.length - 1)}`}
-                                />
-                                {
-                                    isEditing &&
+                    </div>      
+                    <div class = "upbtncon">
                                     <input
-                                        type="button"
-                                        value={'Cancel'}
-                                        onClick={handleOnClickCancel}
+                                    class="btn-save"
+                                        type="submit"
+                                        value={isEditing ? `Update ${selectedUser.substring(0, selectedUser.length - 1)}`
+                                            : `Add ${selectedUser.substring(0, selectedUser.length - 1)}`}
                                     />
+                                    {
+                                        isEditing &&
+                                        <input
+                                            class=" btn-cancel"
+                                            type="button"
+                                            value={'Cancel'}
+                                            onClick={handleOnClickCancel}
+                                        />
                                 }
+                        </div>
                     </form>
                 </div>
                 <div>

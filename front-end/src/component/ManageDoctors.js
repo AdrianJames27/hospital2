@@ -207,16 +207,20 @@ export default function ManageDoctors() {
                             />
                         </div>
                 </div>
-                        <button type="submit" class="form-control"
-                     id="formbtn">{isEditing ? 'Update Doctor' : 'Add Doctor'}</button>
+                <div class = "upbtncon">
+                        
+                        <button type="submit" class="
+                     btn-save">{isEditing ? 'Update Doctor' : 'Add Doctor'}</button>
                         {
                             isEditing &&
                             <input
+                                class="btn-cancel"
                                 type="button"
                                 value={'Cancel'}
                                 onClick={handleOnClickCancel}
                             />
                         }
+                    </div>
                 </form>
             </div>
             <div>

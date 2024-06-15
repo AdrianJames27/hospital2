@@ -151,11 +151,6 @@ export default function BookAppointment() {
             <div>
                 <div>
                     <h1>Book Appointment with Doctor</h1>
-                    {userSession.role === 'patient' &&
-                        <Link to="/hospital/patient/manage_appointments">
-                            Manage Appointments
-                        </Link>
-                    }
                 </div>
                 {isDoctorLoading || isPatientLoading ? (
                     <p className="norec">Loading doctors list...</p>

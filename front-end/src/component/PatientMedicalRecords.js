@@ -50,7 +50,7 @@ export default function PatientMedicalRecords() {
         fetchData();
     }, [patient]);
 
-    function findDoctorById(doctorId) {
+    function displayDoctorNameById(doctorId) {
         if (!doctors || doctors.length === 0) {
             return doctorId;
         } else {
@@ -85,7 +85,7 @@ export default function PatientMedicalRecords() {
                                 if (id === record.patient_id) {
                                     return (
                                         <tr key={record.id}>
-                                            <td>{findDoctorById(record.doctor_id)}</td>
+                                            <td>{displayDoctorNameById(record.doctor_id)}</td>
                                             <td>{record.visit_date}</td>
                                             <td>{record.diagnosis}</td>
                                             <td>{record.treatment}</td>

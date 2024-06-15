@@ -27,8 +27,13 @@ export default function PatientNavigation() {
                             Book Appointment
                         </Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={'/hospital/patient/view_medical_records'}>
+                    <li>
+                        <Link to={"/hospital/patient/manage_appointments"}>
+                            Manage Appointments
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to={'/hospital/patient/view_medical_records'}>
                             View Medical Records
                         </Link>
                     </li>

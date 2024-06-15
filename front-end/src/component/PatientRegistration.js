@@ -58,8 +58,8 @@ export default function PatientRegistration() {
     return (
         
             <div id="form" className="d-flex justify-content-center container-fluid vh-100 ">
-            <div className="formcon">
-            <h1 className="text-center lblform">Patient Registration</h1>
+            <div className="formcon " id="logincon">
+            <h1 className="text-center lblform prlbl">Patient Registration</h1>
 
             <form onSubmit={handleOnSubmit}>
             <div className="row mb-4 form-group">

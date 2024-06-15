@@ -350,3 +350,7 @@ label{
   border: 0.5px solid #DFE3E6;
   padding: 40px !important;
 }
+
+.prlbl{
+  margin-top: 10px;
+}

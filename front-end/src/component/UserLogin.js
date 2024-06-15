@@ -75,8 +75,8 @@ export default function UserLogin() {
 
     return (
         <div id="form" className="d-flex justify-content-center container-fluid vh-100 ">
-            <div className="formcon" id="logincon">
-                <h1 className="text-center lblform">Login</h1>
+            <div className="formcon " id="logincon">
+                <h1 className="text-center lblform prlbl">Login</h1>
 
                 <form onSubmit={handleSubmit}>
                     <div className="row mb-4 form-group">

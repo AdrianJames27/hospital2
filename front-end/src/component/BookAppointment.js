@@ -150,9 +150,7 @@ export default function BookAppointment() {
                 (userSession.role === 'receptionist' && <StaffNavigation userRole={userSession.role} />
                 )}
             <div>
-                <div>
-                    <h1>Book Appointment with Doctor</h1>
-                </div>
+                <h1 className="lbl">Book Appointment with Doctor</h1>
                 {isDoctorLoading || isPatientLoading ? (
                     <p className="norec">Loading doctors list...</p>
                 ) : (
@@ -246,7 +244,7 @@ export default function BookAppointment() {
 
                 </form>
                 <br />
-                <button className="btnback app" onClick={handleCloseDialog}>Close</button>
+                <button className="btnback" onClick={handleCloseDialog}>Close</button>
             </dialog>
         </div>
     );

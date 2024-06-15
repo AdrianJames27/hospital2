@@ -228,7 +228,7 @@ export default function ManageMedicalRecords() {
                 </form>
                 </div>
                 <div class="tblcon">
-                     <h1 class="lblmedrec"> List of Medical Records</h1>
+                     <h1 class="lblmedrec">Medical Record List</h1>
                 {(isMedicalRecordLoading || isPatientLoading) ? (
                     <p className="norec">Loading medical records...</p>
                 ) : (!medicalRecords || medicalRecords.length === 0) ? (
@@ -288,7 +288,7 @@ export default function ManageMedicalRecords() {
                     <p>Notes: {selectedMedicalRecord.notes}</p>
                 </div>
                 <br />
-                <button onClick={handleCloseDialog}>Close</button>
+                <button className="btnback" onClick={handleCloseDialog}>Close</button>
             </dialog>
         </div>
     );

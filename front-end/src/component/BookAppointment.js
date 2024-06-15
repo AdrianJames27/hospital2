@@ -130,7 +130,7 @@ export default function BookAppointment() {
             patientId = selectedPatientId;
         }
 
-        if (userSession.role === 'patient' || userSession.role === 'receptionist' || patient.length !== 0) {
+        if ((userSession.role === 'patient' && patient.length !== 0) || userSession.role === 'receptionist') {
             const appointment = {
                 patientId: patientId,
                 doctorId: selectedDoctorId,
@@ -152,7 +152,7 @@ export default function BookAppointment() {
                 <div>
                     <h1>Book Appointment with Doctor</h1>
                     {userSession.role === 'patient' &&
-                        <Link to="/hostpital/patient/manage_appointments">
+                        <Link to="/hospital/patient/manage_appointments">
                             Manage Appointments
                         </Link>
                     }

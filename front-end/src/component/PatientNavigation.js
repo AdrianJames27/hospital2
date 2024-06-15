@@ -27,7 +27,7 @@ export default function PatientNavigation() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/hospital/patient/manage_appointments">
+                        <Link to={"/hospital/patient/manage_appointments"}>
                             Manage Appointments
                         </Link>
                     </li>

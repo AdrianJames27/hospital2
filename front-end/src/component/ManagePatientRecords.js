@@ -323,12 +323,12 @@ export default function ManagePatientRecords() {
             <div>
                 <h1 className="lbl">Patient Records</h1>
                 {isPatientLoading ? (
-                    <p>Loading patient records...</p>
+                    <p className="norec">Loading patient records...</p>
                 ) : (
                     (!patients || patients.length === 0) ? (
-                        <p>Patient record list is empty</p>
+                        <p className="norec">Patient record list is empty</p>
                     ) : (
-                        
+                    <div className="table-responsive">
                         <table class="table table-striped table-color">
                             <thead>
                                 <tr>
@@ -365,6 +365,7 @@ export default function ManagePatientRecords() {
                                 ))}
                             </tbody>
                         </table>
+                    </div>
                     )
                 )}
             </div>

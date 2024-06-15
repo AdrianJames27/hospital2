@@ -114,14 +114,18 @@ export default function DoctorViewProfile() {
     function showProfile() {
         return (
             <>
-                <p>Doctor ID: {doctorData.doctorId}</p>
-                <p>Name: {doctorData.firstName} {doctorData.lastName}</p>
-                <p>Specialization: {doctorData.specialization}</p>
-                <p>License No. {doctorData.licenseNumber}</p>
-                <p>Phone No. {doctorData.phone}</p>
-                <p>Email: {doctorData.email}</p>
-                <br />
-                <button onClick={handleOnClickEditProfile}>Edit Profile</button>
+            <div className="container prof" >
+                <h1 className="lblprof">Your Profile</h1>
+                <ul class = "list-group ul-prof">
+                    <li class="list-group-item u-case"><b>Name:</b> {doctorData.firstName} {doctorData.lastName}</li>
+                    <li class="list-group-item u-case"><b>Specialization:</b> {doctorData.specialization}</li>
+                    <li class="list-group-item u-case" ><b>License No.</b> {doctorData.licenseNumber}</li>
+                    <li class="list-group-item u-case"><b>Phone No.</b> {doctorData.phone}</li>
+                    <li class="list-group-item "><span class="u-case"><b>Email:</b></span> {doctorData.email}</li>
+                    
+                </ul>
+                <button class ="edit-prof"onClick={handleOnClickEditProfile}>Edit Profile</button>
+                </div>
             </>
         );
     }
@@ -129,65 +133,90 @@ export default function DoctorViewProfile() {
     function showEditProfile() {
         return (
             <>
+            <div className="container prof">
+            <h1 className="lblprof">Your Profile</h1>
                 <form onSubmit={handleOnSubmit}>
-                    <label htmlFor="firstName">First Name:</label>
+                <div className="row mb-4 form-group">
+                    <label  class="col-sm-2 col-form-label" htmlFor="firstName">First Name:</label>
+
                     <input
+                        class="form-control"
                         type="text"
                         name="firstName"
                         value={doctorData.firstName}
                         onChange={handleOnInputChange}
                         required
-                    /><br />
-                    <label htmlFor="lastName">Last Name:</label>
+                    />
+                </div>
+                <div className="row mb-4 form-group">
+                    <label class="col-sm-2 col-form-label" htmlFor="lastName">Last Name:</label>
                     <input
+                        class="form-control"
                         type="text"
                         name="lastName"
                         value={doctorData.lastName}
                         onChange={handleOnInputChange}
                         required
-                    /><br />
-                    <label htmlFor="specialization">Specialization:</label>
+                    />
+                </div>
+                <div className="row mb-4 form-group">
+                    <label class="col-sm-2 col-form-label" htmlFor="specialization">Specialization:</label>
                     <input
+                     class="form-control"
                         type="text"
                         name="specialization"
                         value={doctorData.specialization}
                         onChange={handleOnInputChange}
                         required
-                    /> <br />
-                    <label htmlFor="licenseNumber">License Number:</label>
+                    />
+                </div>
+                <div className="row mb-4 form-group">
+                    <label class="col-sm-2 col-form-label" htmlFor="licenseNumber">License Number:</label>
                     <input
+                     class="form-control"
                         type="text"
                         name="licenseNumber"
                         value={doctorData.licenseNumber}
                         onChange={handleOnInputChange}
                         required
-                    /> <br />
-                    <label htmlFor="phone">Phone:</label>
+                    />
+                </div>
+                <div className="row mb-4 form-group">
+                    <label class="col-sm-2 col-form-label" htmlFor="phone">Phone:</label>
                     <input
+                     class="form-control"
                         type="text"
                         name="phone"
                         value={doctorData.phone}
                         onChange={handleOnInputChange}
                         required
-                    /> <br />
-                    <label htmlFor="email">Email:</label>
+                    />
+                </div>
+                <div className="row mb-4 form-group">
+                    <label class="col-sm-2 col-form-label" htmlFor="email">Email:</label>
                     <input
+                     class="form-control"
                         type="email"
                         name="email"
                         value={doctorData.email}
                         onChange={handleOnInputChange}
                         required
-                    /> <br />
+                    /> 
+                </div>
+                    
                     <input
-                        type="submit"
-                        value={'Save Profile'}
-                    />
-                    <input
+                        className="btn-cancel"
                         type="button"
                         value={'Cancel'}
                         onClick={handleOnClickCancel}
                     />
+                    <input
+                        className="btn-save"
+                        type="submit"
+                        value={'Save Profile'}
+                    />
                 </form>
+            </div>
             </>
         );
     }
@@ -197,10 +226,10 @@ export default function DoctorViewProfile() {
             <StaffNavigation userRole={userSession.role} />
             <h1>Your Profile</h1>
             {isDoctorLoading ? (
-                <p>Loading profile...</p>
+                <p className="norec">Loading profile...</p>
             ) : (
                 !doctor || doctor.length === 0 ? (
-                    <p>You don't have a record yet</p>
+                    <p className="norec">You don't have a record yet</p>
                 ) : (manageView())
             )}
         </div>

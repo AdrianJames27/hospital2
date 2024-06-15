@@ -60,14 +60,14 @@ export default function PatientMedicalRecords() {
     }
 
     return (
-        <div>
+        <div className="container">
             <PatientNavigation />
-            <h1>Medical Records</h1>
+            <h1 className="lbl">Medical Records</h1>
             {isPatientLoading || isDoctorLoading || isMedicalRecordLoading ? (
-                <p>Loading medical records...</p>
+                <p className="norec">Loading medical records...</p>
             ) : (
                 (!medicalRecord || medicalRecord.length === 0) ? (
-                    <p>You have no medical record/s yet</p>
+                    <p className="norec">You have no medical record/s yet</p>
                 ) : (
                     <table>
                         <thead>

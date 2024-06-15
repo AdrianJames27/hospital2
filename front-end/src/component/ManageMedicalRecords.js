@@ -138,10 +138,13 @@ export default function ManageMedicalRecords() {
 
     function displayContent() {
         return (
-            <div>
+            <div className="container">
+                <div class= "medrec">
+                    <h1 class="lblmedrec">Manage Medical Records</h1>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="patientId">Select a Patient</label>
-                    <select required name="patientId" onChange={handleOnChange} value={medicalRecordData.patientId}>
+                <div className="row mb-4 form-group">
+                    <label class="col-form-label"htmlFor="patientId">Select a Patient</label>
+                    <select  class="form-select" required name="patientId" onChange={handleOnChange} value={medicalRecordData.patientId}>
                         <option disabled value={''}>Select Patient</option>
                         {
                             patients.map(patient => (
@@ -150,59 +153,89 @@ export default function ManageMedicalRecords() {
                                 </option>
                             ))
                         }
-                    </select> <br />
-                    <label>Visit Date</label>
+                    </select> 
+
+                </div>
+
+                <div className="row mb-4 form-group">
+                    <label class="col-form-label">Visit Date</label>
                     <input
+                        class="form-control"
                         type="date"
                         name="visitDate"
                         value={medicalRecordData.visitDate}
                         onChange={handleOnChange}
                         required
-                    /> <br />
-                    <label>Diagnosis</label>
+                    /> 
+
+                </div>  
+
+                <div className="row mb-4 form-group">
+                    <label class="col-form-label">Diagnosis</label>
                     <input
+                        class="form-control"
                         type="text"
                         name="diagnosis"
                         value={medicalRecordData.diagnosis}
                         onChange={handleOnChange}
                         required
-                    /> <br />
-                    <label>Treatment</label>
+                    /> 
+
+                </div>
+
+                <div className="row mb-4 form-group">
+                    <label class="col-form-label">Treatment</label>
                     <input
+                        class="form-control"
                         type="text"
                         name="treatment"
                         value={medicalRecordData.treatment}
                         onChange={handleOnChange}
                         required
-                    /> <br />
-                    <label>Notes</label>
+                    />
+
+                </div>
+
+                <div className="row mb-4 form-group">
+                    <label class="col-form-label">Notes</label>
                     <input
+                        class="form-control"
                         type="text"
                         name="notes"
                         value={medicalRecordData.notes}
                         onChange={handleOnChange}
                         required
-                    /> <br />
+                    /> 
+
+                </div>
+
                     <input
+                        id="formbtn"
+                        class="form-control"
                         type="submit"
                         value={isEditing ? 'Update Medical Record' : 'Add Medical Record'}
                     />
                     {
                         isEditing &&
                         <input
+
                             type="button"
                             value={'Cancel'}
                             onClick={handleOnClickCancel}
                         />
                     }
                 </form>
+                </div>
+                <div class="tblcon">
+                     <h1 class="lblmedrec"> List of Medical Records</h1>
                 {(isMedicalRecordLoading || isPatientLoading) ? (
                     <p>Loading medical records...</p>
                 ) : (!medicalRecords || medicalRecords.length === 0) ? (
                     <p>Medical records list is empty</p>
                 ) : (
-                    <table>
-                        <thead>
+                    
+                    <table className="table table-striped">
+                        <thead >
                             <tr>
                                 <th>Patient Name</th>
                                 <th>Visit Date</th>
@@ -223,8 +256,8 @@ export default function ManageMedicalRecords() {
                                             <td>{medicalRecord.treatment}</td>
                                             <td>{medicalRecord.notes}</td>
                                             <td>
-                                                <button onClick={() => viewMedicalRecord(patient, medicalRecord)}>View</button>
-                                                <button onClick={() => handleEdit(medicalRecord)}>Edit</button>
+                                                <button class ="view-mr" onClick={() => viewMedicalRecord(patient, medicalRecord)}>View</button>
+                                                <button  class = "edit-mr"onClick={() => handleEdit(medicalRecord)}>Edit</button>
                                             </td>
                                         </tr>
                                     )
@@ -233,6 +266,7 @@ export default function ManageMedicalRecords() {
                         </tbody>
                     </table>
                 )}
+            </div>
             </div>
         );
     }

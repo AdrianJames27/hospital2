@@ -158,10 +158,10 @@ export default function BookAppointment() {
                     }
                 </div>
                 {isDoctorLoading || isPatientLoading ? (
-                    <p>Loading doctors list...</p>
+                    <p className="norec">Loading doctors list...</p>
                 ) : (
                     (!doctors || doctors.length === 0) ? (
-                        <p>There is no doctor</p>
+                        <p className="norec">There is no doctor</p>
                     ) : (
                         <>
                         <div className="row gy-4" style={{ marginTop: '40px' }}>

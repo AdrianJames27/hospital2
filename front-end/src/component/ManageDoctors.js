@@ -221,10 +221,10 @@ export default function ManageDoctors() {
             </div>
             <div>
                 {isDoctorLoading ? (
-                    <p>Loading doctors...</p>
+                    <p className="norec">Loading doctors...</p>
                 ) : (
                     (!doctors || doctors.length === 0) ? (
-                        <p>Doctor list is empty</p>
+                        <p className="norec">Doctor list is empty</p>
                     ) : (
                         <div>
                             <h1 class="lbl">Doctor List</h1>

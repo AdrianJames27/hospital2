@@ -59,18 +59,18 @@ export default function ViewAppoinments() {
     }
 
     return (
-        <div>
+        <div className="container">
             <StaffNavigation userRole={userSession.role} />
-            <h1>Appointment List</h1>
+            <h1 className="lbl">Appointment List</h1>
             {(isPatientLoading || isDoctorLoading || isAppointmentLoading) ? (
-                <p>Loading appointment records...</p>
+                <p className="norec">Loading appointment records...</p>
             ) : (
                 ((!patients || patients.length === 0) ||
                     (!doctors || doctors.length === 0) ||
                     (!appointments || appointments.length === 0)) ? (
-                    <p>There are no appointments yet</p>
+                    <p className="norec">There are no appointments yet</p>
                 ) : (
-                    <table>
+                    <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th>Appointment ID</th>

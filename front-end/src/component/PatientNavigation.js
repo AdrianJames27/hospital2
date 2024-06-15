@@ -14,27 +14,28 @@ export default function PatientNavigation() {
 
     return (
         <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to={'/hospital/patient/panel'}>
+            <nav className="navbar fixed-top">
+            <div className="container-fluid" >
+             <ul className="nav nav-underline">
+                    <li className="nav-item">
+                        <Link className="nav-link" to={'/hospital/patient/panel'}>
                             Dashboard
                         </Link>
                     </li>
-                    <li>
-                        <Link to={'/hospital/patient/book_appointment'}>
+                    <li className="nav-item">
+                        <Link className="nav-link" to={'/hospital/patient/book_appointment'}>
                             Book Appointment
                         </Link>
                     </li>
-                    <li>
-                        <Link to={'/hospital/patient/view_medical_records'}>
+                    <li className="nav-item">
+                        <Link className="nav-link" to={'/hospital/patient/view_medical_records'}>
                             View Medical Records
                         </Link>
                     </li>
-                    <li>
-                        <button onClick={handleOnClickLogout}>Logout</button>
-                    </li>
+                    
                 </ul>
+                <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout</button>
+            </div>
             </nav>
         </div>
     );

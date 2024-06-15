@@ -5,7 +5,15 @@
  
 }
 
-.navbar.fixed-top{
+.dashboard{
+  margin-top: 80px;
+  background-image: url(./assets/hospitalbg.png);  
+  background-size: cover;
+  background-repeat: no-repeat;
+ 
+}
+
+.navbar{
   background-color: #183D5A;
   height: 80px !important;
 }
@@ -159,14 +167,15 @@ h2{
 th{
   color: #4E7490 !important;
   font-weight: 600 !important;
-  font-size: 13px !important;
+  font-size: 15px !important;
+ 
   
 }
 
 td{
   color: #283138 !important;
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
 }
 
 .edit{
@@ -194,6 +203,141 @@ td{
   margin-right: 2px !important;
 }
 
-.doc-man{
+.prof{
   margin-top: 100px;
+  border: 0.5px solid #DFE3E6;
+  padding: 40px !important;
+ 
+}
+
+.lblprof{
+  color: #4784b3;
+  margin-bottom: 30px;
+}
+
+.u-case{
+  text-transform: uppercase;
+}
+
+.ul-prof{
+  margin-bottom: 50px !important;
+}
+
+.edit-prof{
+  background-color: #6791ad !important;
+  color: white;
+  border-color: #2a658c !important;
+  width: 200px !important;
+  height: 30px;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-right: 2px !important;
+  margin-bottom: 5px;
+  
+}
+
+.btn-cancel{
+  background-color: #f36359 !important;
+  color: white;
+  width: 200px !important;
+  height: 40px;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-right: 20px !important;
+  margin-bottom: 5px;
+  
+}
+
+.btn-save{
+  background-color: #73d378 !important;
+  color: white;
+  width: 200px !important;
+  height: 40px;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-right: 2px !important;
+  margin-bottom: 5px;
+  
+}
+
+.view-mr{
+  background-color: #73d378 !important;
+  color: white;
+  width: 100px !important;
+  height: 30px;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-right: 2px !important;
+  margin-bottom: 5px;
+  
+}
+
+.edit-mr{
+  background-color: #6791ad !important;
+  color: white;
+  border-color: #2a658c !important;
+  width: 100px !important;
+  height: 30px;
+  border: 0.5px solid #DFE3E6;
+  border-radius: 10px;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  margin-right: 2px !important;
+  margin-bottom: 5px;
+  
+}
+
+
+.table th, .table td {
+  white-space: nowrap;
+  text-overflow:clip;
+  overflow:auto;
+  max-width: 200px; 
+}
+
+.medrec{
+  margin-top: 100px;
+  border: 0.5px solid #DFE3E6;
+  padding: 40px !important;
+}
+
+.lblmedrec{
+  color: #4784b3;
+  margin-bottom: 30px;
+}
+
+label{
+  font-weight: 600 !important;
+}
+
+.tblcon{
+  margin-top: 100px;
+}
+
+.welc{
+  margin-top: 170px;
+  background-color: #1b486d;
+  color: white;
+  width: 1000px !important;
+  text-align: center;
+  padding: 50px;
+  opacity: 0.9;
+  border-radius: 10px;
+ 
+}
+.norec{
+  margin-top: 20px;
+  border: 0.5px solid #DFE3E6;
+  padding: 200px !important;
+  color: #6f7579;
+  text-align: center;
+  border-radius: 10px;
 }

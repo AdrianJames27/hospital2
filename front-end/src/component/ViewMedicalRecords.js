@@ -59,18 +59,18 @@ export default function ViewMedicalRecords() {
     }
 
     return (
-        <div>
+        <div className="container">
             <StaffNavigation userRole={userSession.role} />
-            <h1>Medical Record List</h1>
+            <h1 className="lbl">Medical Record List</h1>
             {(isPatientLoading || isDoctorLoading || isMedicalRecordLoading) ? (
-                <p>Loading medical records...</p>
+                <p className="norec">Loading medical records...</p>
             ) : (
                 ((!patients || patients.length === 0) ||
                     (!doctors || doctors.length === 0) ||
                     (!medicalRecords || medicalRecords.length === 0)) ? (
-                    <p>There are no medical records yet</p>
+                    <p className="norec">There are no medical records yet</p>
                 ) : (
-                    <table>
+                    <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th>Medical Record ID</th>

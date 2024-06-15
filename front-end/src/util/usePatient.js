@@ -71,9 +71,17 @@ export default function usePatient() {
         try {
             const data = await makeApiCall(url, method);
 
-            if (data.status === 200) {
-                setHasPatientError(false);
-                setPatient(data.patient);
+            switch (data.status) {
+                case 200:
+                    setHasPatientError(false);
+                    setPatient(data.patient);
+                    break;
+                case 404:
+                    window.alert(data.message);
+                    break;
+                default:
+                    window.alert('An unexpected error occurred');
+                    break;
             }
         } catch (error) {
             console.error(`Error: ${error}`);

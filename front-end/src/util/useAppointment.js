@@ -113,7 +113,7 @@ export default function useAppointment() {
 
     async function showAppointment(role, id) {
         let url = `http://127.0.0.1:8000/api/appointment/show`;
-    
+
         // Check the role and set the appropriate query parameter
         if (role === 'patient') {
             url += `?patient_id=${id}`;
@@ -123,20 +123,31 @@ export default function useAppointment() {
             console.error('Invalid role');
             return;
         }
-    
+
         const method = 'GET';
-    
+
         try {
             const data = await makeApiCall(url, method);
-    
-            if (data.status === 200) {
-                setHasAppointmentError(false);
-                setAppointment(data.appointments);
+
+            switch (data.status) {
+                case 200:
+                    setHasAppointmentError(false);
+                    setAppointment(data.appointments);
+                    break;
+                case 404:
+                    window.alert(data.message);
+                    break;
+                case 422:
+                    handleValidationErrors(data);
+                    break;
+                default:
+                    window.alert('An unexpected error occurred');
+                    break;
             }
         } catch (error) {
             console.error(`Error: ${error}`);
         }
-    }    
+    }
 
     async function updateAppointment(appointment) {
         const url = `http://127.0.0.1:8000/api/appointment/${appointment.id}/edit`;

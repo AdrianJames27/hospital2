@@ -124,7 +124,7 @@ export default function useMedicalRecord() {
                     setMedicalRecord(data.medicalRecords);
                     break;
                 case 404:
-                    handleValidationErrors(data);
+                    window.alert(data.message);
                     break;
                 default:
                     window.alert('An unexpected error occurred');

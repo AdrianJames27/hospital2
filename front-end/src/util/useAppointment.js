@@ -139,11 +139,12 @@ export default function useAppointment() {
     }    
 
     async function updateAppointment(appointment) {
-        const url = `http://127.0.0.1:8000/api/appointment/${appointment.id}/update`;
+        const url = `http://127.0.0.1:8000/api/appointment/${appointment.id}/edit`;
         const method = 'PUT';
         const body = {
             appointment_date: appointment.appointmentDate,
             status: appointment.status,
+            reason: appointment.reason
         };
 
         try {

@@ -224,6 +224,7 @@ export default function ManageDoctors() {
                 </form>
             </div>
             <div>
+                <h1 class="lbl">Doctor List</h1>
                 {isDoctorLoading ? (
                     <p className="norec">Loading doctors...</p>
                 ) : (
@@ -231,7 +232,6 @@ export default function ManageDoctors() {
                         <p className="norec">Doctor list is empty</p>
                     ) : (
                         <div>
-                            <h1 class="lbl">Doctor List</h1>
                             <table class="table table-striped table-color">
                                 <thead>
                                     <tr>

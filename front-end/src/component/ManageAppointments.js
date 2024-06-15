@@ -34,7 +34,8 @@ export default function ManageAppointments() {
     const [appointmentData, setAppointmentData] = useState({
         appointmentId: '',
         appointmentDate: '',
-        status: ''
+        status: '',
+        reason: ''
     });
 
     const {
@@ -99,7 +100,8 @@ export default function ManageAppointments() {
             setAppointmentData({
                 appointmentId: '',
                 appointmentDate: '',
-                status: ''
+                status: '',
+                reason: ''
             });
 
             setIsEditing(false);
@@ -138,7 +140,8 @@ export default function ManageAppointments() {
         setAppointmentData({
             appointmentId: appointment.id,
             appointmentDate: appointment.appointment_date,
-            status: appointment.status
+            status: appointment.status,
+            reason: appointment.reason
         });
 
         setIsEditing(true);
@@ -166,7 +169,8 @@ export default function ManageAppointments() {
         setAppointmentData({
             appointmentId: '',
             appointmentDate: '',
-            status: ''
+            status: '',
+            reason: ''
         });
 
         setIsEditing(false);
@@ -178,7 +182,8 @@ export default function ManageAppointments() {
         const appointment = {
             id: appointmentData.appointmentId,
             appointmentDate: formatDateTime(appointmentData.appointmentDate),
-            status: appointmentData.status
+            status: appointmentData.status,
+            reason: appointmentData.reason
         };
 
         await updateAppointment(appointment);
@@ -193,7 +198,7 @@ export default function ManageAppointments() {
     }
 
     return (
-        <div class = "container app"> 
+        <div class="container app">
             {(userSession.role === 'patient' && <PatientNavigation />) ||
                 (userSession.role === 'doctor' && <StaffNavigation userRole={userSession.role} />)
             }
@@ -205,10 +210,10 @@ export default function ManageAppointments() {
                     <p className="norec">No Scheduled Appointment/s</p>
                 ) : (
                     <>
-                        <div class = " container appcon">
+                        <div class=" container appcon">
                             <form onSubmit={handleOnSubmit}>
                                 <div className="row mb-4 form-group">
-                                    <label  class="col-form-label"htmlFor="appointmentDate">Appointment Date</label>
+                                    <label class="col-form-label" htmlFor="appointmentDate">Appointment Date</label>
                                     <input
                                         class="form-control"
                                         type="datetime-local"
@@ -216,90 +221,106 @@ export default function ManageAppointments() {
                                         disabled={!isEditing || (userSession.role === 'doctor' && isEditing)}
                                         value={appointmentData.appointmentDate}
                                         onChange={handleOnChange}
-                                    /> 
+                                        required
+                                    />
                                 </div>
 
                                 <div className="row mb-4 form-group">
-                                    <label  class="col-form-label" htmlFor="status">Status</label>
+                                    <label class="col-form-label" htmlFor="status">Status</label>
                                     <select class="form-select"
                                         disabled={!isEditing || (userSession.role === 'patient' && isEditing)}
                                         name="status"
                                         onChange={handleOnChange}
                                         value={appointmentData.status}
+                                        required
                                     >
                                         <option disabled value={''}>Select Status</option>
                                         {statusList.map((status, index) => (
                                             <option key={index} value={status}>{status}</option>
                                         ))}
-                                    </select> 
+                                    </select>
                                 </div>
-                                <div class = "upbtncon">
-                                {
 
-                                    isEditing &&
-                                    <>
-                                     <div className="row mb-4 form-group">
-                                        <input
-                                            className="btn-save"
-                                            type="submit"
-                                            value={userSession.role === 'patient' ? 'Update Appointment' : 'Update Status'}
-                                        />
-                                        <input
-                                            className="btn-cancel"
-                                            type="button"
-                                            value={'Cancel'}
-                                            onClick={handleOnClickCancel}
-                                        />
-                                    </div>
-                                    </>
-                                }
-                            </div>
+                                <div className="row mb-4 form-group">
+                                    <label class="col-form-label" htmlFor="status">Reason</label>
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        name="reason"
+                                        disabled={!isEditing || (userSession.role === 'doctor' && isEditing)}
+                                        value={appointmentData.reason}
+                                        placeholder="Enter your reason"
+                                        onChange={handleOnChange}
+                                        required
+                                    />
+                                </div>
+                                <div class="upbtncon">
+                                    {
+
+                                        isEditing &&
+                                        <>
+                                            <div className="row mb-4 form-group">
+                                                <input
+                                                    className="btn-save"
+                                                    type="submit"
+                                                    value={userSession.role === 'patient' ? 'Update Appointment' : 'Update Status'}
+                                                />
+                                                <input
+                                                    className="btn-cancel"
+                                                    type="button"
+                                                    value={'Cancel'}
+                                                    onClick={handleOnClickCancel}
+                                                />
+                                            </div>
+                                        </>
+                                    }
+                                </div>
                             </form>
                         </div>
-                        <div class = "container">
-                            <h1 class ="lblmedrec app"> Scheduled Appointments </h1>
-                        <table class ="table table-striped">
-                            <thead >
-                                <tr>
-                                    {(userSession.role === 'patient' && <th>Doctor Name</th>) ||
-                                        (userSession.role === 'doctor' && <th>Patient Name</th>)
-                                    }
-                                    <th>Appointment Date</th>
-                                    <th>Status</th>
-                                    <th>Reason</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {appointment.map(appointment => {
-                                    if (appointment.status === 'scheduled') {
-                                        return (
-                                            <tr key={appointment.id}>
-                                                {(userSession.role === 'patient' && <td>{displayDoctorNameById(appointment.doctor_id)}</td>) ||
-                                                    (userSession.role === 'doctor' && <td>{displayPatientNameById(appointment.patient_id)}</td>)
-                                                }
-                                                <td>{appointment.appointment_date}</td>
-                                                <td>{appointment.status}</td>
-                                                <td>{appointment.reason}</td>
-                                                <td>
-                                                    <button class = "edit-mr"onClick={() => handleOnClickResched(appointment)}>
-                                                        {userSession.role === 'patient' ? 'Reschedule' : 'Edit Status'}
-                                                    </button>
-                                                    {
-                                                        userSession.role === 'patient' &&
-                                                        <button onClick={() => handleOnClickCancelSchedule(appointment.id)}>
-                                                            Cancel Schedule
-                                                        </button>
+                        <div class="container">
+                            <h1 class="lblmedrec app"> Scheduled Appointments </h1>
+                            <table class="table table-striped">
+                                <thead >
+                                    <tr>
+                                        {(userSession.role === 'patient' && <th>Doctor Name</th>) ||
+                                            (userSession.role === 'doctor' && <th>Patient Name</th>)
+                                        }
+                                        <th>Appointment Date</th>
+                                        <th>Status</th>
+                                        <th>Reason</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {appointment.map(appointment => {
+                                        if (appointment.status === 'scheduled') {
+                                            return (
+                                                <tr key={appointment.id}>
+                                                    {(userSession.role === 'patient' && <td>{displayDoctorNameById(appointment.doctor_id)}</td>) ||
+                                                        (userSession.role === 'doctor' && <td>{displayPatientNameById(appointment.patient_id)}</td>)
                                                     }
-                                                </td>
-                                            </tr>
-                                        );
-                                    } else {
-                                        return null;
-                                    }
-                                })}
-                            </tbody>
-                        </table>
+                                                    <td>{appointment.appointment_date}</td>
+                                                    <td>{appointment.status}</td>
+                                                    <td>{appointment.reason}</td>
+                                                    <td>
+                                                        <button className="edit-mr" onClick={() => handleOnClickResched(appointment)}>
+                                                            {userSession.role === 'patient' ? 'Reschedule' : 'Edit Status'}
+                                                        </button>
+                                                        {
+                                                            userSession.role === 'patient' &&
+                                                            <button className="edit-mr bg-warning" onClick={() => handleOnClickCancelSchedule(appointment.id)}>
+                                                                Cancel Schedule
+                                                            </button>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            );
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
+                                </tbody>
+                            </table>
                         </div>
                     </>
                 ))

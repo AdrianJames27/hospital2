@@ -322,7 +322,7 @@ export default function ManagePatientRecords() {
                 </form>
             </div>
             <div>
-                <h1 className="lbl">Patient Records</h1>
+                <h1 className="lbl">Patient Records List</h1>
                 {isPatientLoading ? (
                     <p className="norec">Loading patient records...</p>
                 ) : (

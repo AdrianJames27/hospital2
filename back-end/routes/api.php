@@ -39,7 +39,7 @@ Route::get('/doctor/list', [DoctorController::class, 'getDoctors']);
 Route::get('/appointment/list', [AppointmentController::class, 'listAppointments']);
 Route::post('/appointment/book', [AppointmentController::class, 'bookAppointment']);
 Route::get('/appointment/show', [AppointmentController::class, 'showAppointments']);
-Route::put('/appointment/{id}/update', [AppointmentController::class, 'updateAppointment']);
+Route::put('/appointment/{id}/edit', [AppointmentController::class, 'updateAppointment']);
 Route::put('/appointment/{id}/cancel', [AppointmentController::class, 'cancelAppointment']);
 
 // MedicalRecordController

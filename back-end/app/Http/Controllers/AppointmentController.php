@@ -89,49 +89,29 @@ class AppointmentController extends Controller
         $appointment = Appointment::find($id);
 
         if ($appointment) {
-            if ($request->filled('appointment_date')) {
-                $validator = Validator::make($request->all(), [
-                    'appointment_date' => 'required|date_format:Y-m-d H:i:s'
-                ]);
+            $validator = Validator::make($request->all(), [
+                'appointment_date' => 'required|date_format:Y-m-d H:i:s',
+                'status' => 'required|in:scheduled,completed,cancelled',
+                'reason' => 'required|string',
+            ]);
 
-                if ($validator->fails()) {
-                    return response()->json([
-                        'status' => 422,
-                        'errors' => $validator->errors()
-                    ]);
-                }
-
-                $appointment->appointment_date = $request->appointment_date;
-            }
-
-            if ($request->filled('status')) {
-                $validator = Validator::make($request->all(), [
-                    'status' => 'required|in:scheduled,completed,cancelled',
-                ]);
-
-                if ($validator->fails()) {
-                    return response()->json([
-                        'status' => 422,
-                        'errors' => $validator->messages()
-                    ]);
-                }
-
-                $appointment->status = $request->status;
-            }
-
-            if ($request->filled('appointment_date') || $request->filled('status')) {
-                $appointment->save();
-
-                return response()->json([
-                    'status' => 200,
-                    'message' => 'Appointment updated successfully'
-                ]);
-            } else {
+            if ($validator->fails()) {
                 return response()->json([
                     'status' => 422,
-                    'message' => 'Empty request'
+                    'errors' => $validator->messages()
                 ]);
             }
+
+            $appointment->update([
+                'appointment_date' => $request->appointment_date,
+                'status' => $request->status,
+                'reason' => $request->reason
+            ]);
+            
+            return response()->json([
+                'status' => 200,
+                'message' => 'Appointment updated successfully'
+            ]);
         } else {
             return response()->json([
                 'status' => 404,

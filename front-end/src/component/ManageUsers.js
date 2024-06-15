@@ -180,10 +180,7 @@ export default function ManageUser() {
         return (
             <> 
             <div className="container manageuser-con">
-                <h3 class = "lblform">{selectedUser} Form</h3>
-                
-          
-                <h3>{selectedUser.substring(0, selectedUser.length - 1)}</h3>
+                <h3 class = "lblform">{selectedUser.substring(0, selectedUser.length - 1)} Form</h3>
                 <div>
                     <form onSubmit={handleOnSubmit}>
                     <div className="row mb-4 form-group">
@@ -233,6 +230,8 @@ export default function ManageUser() {
                                             {definedRoles.map((definedRole, index) => {
                                                 if (definedRole === userData.role) {
                                                     return <option key={index} value={definedRole}>{definedRole}</option>;
+                                                } else {
+                                                    return null;
                                                 }
                                             })}
                                         </select>
@@ -279,10 +278,10 @@ export default function ManageUser() {
                 <div>
                     <h2 class="lblform">{selectedUser.substring(0, selectedUser.length - 1)} List</h2>
                     {isUserLoading ? (
-                        <p>Loading {selectedUser}...</p>
+                        <p className="norec">Loading {selectedUser}...</p>
                     ) : (
                         (!userList || userList.length === 0) ? (
-                            <p >{selectedUser} list is empty</p>
+                            <p className="norec">{selectedUser} list is empty</p>
                         ) : (
                             <table class="table table-striped table-color">
                                 <thead>

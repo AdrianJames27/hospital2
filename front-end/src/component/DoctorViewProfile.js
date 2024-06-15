@@ -205,15 +205,15 @@ export default function DoctorViewProfile() {
                 </div>
                     
                     <input
+                        className="btn-save"
+                        type="submit"
+                        value={'Save Profile'}
+                    />
+                    <input
                         className="btn-cancel"
                         type="button"
                         value={'Cancel'}
                         onClick={handleOnClickCancel}
-                    />
-                    <input
-                        className="btn-save"
-                        type="submit"
-                        value={'Save Profile'}
                     />
                 </form>
             </div>

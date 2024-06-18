@@ -28,7 +28,7 @@ function App() {
 
           <Route
             exact
-            path='/'
+            path='/hospital'
             element={<UserLogin />}
           />
 
@@ -143,12 +143,12 @@ function App() {
           }
 
           <Route
-            path='/user/patient/register'
+            path='/hospital/user/patient/register'
             element={<PatientRegistration />}
           />
 
           <Route
-            path='/user/staff/register'
+            path='/hospital/user/staff/register'
             element={<StaffRegistration />}
           />
         </Routes>

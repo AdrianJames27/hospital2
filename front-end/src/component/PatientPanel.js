@@ -7,7 +7,8 @@ export default function PatientPanel() {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
 
     // if role is not patient, go back to login page
-    if (userSession.role !== 'patient') navigate('/');
+    useEffec
+    if (userSession.role !== 'patient') navigate('/hospital');
 
     return (
         <div class ="dashboard d-flex justify-content-center container-fluid vh-100">

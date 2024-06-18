@@ -10,7 +10,7 @@ export default function ViewAppoinments() {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
 
     // if role is not admin, go back to login page
-    if (userSession.role !== 'admin') navigate('/');
+    if (userSession.role !== 'admin') navigate('/hospital');
 
     const {
         isPatientLoading,

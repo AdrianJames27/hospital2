@@ -7,10 +7,19 @@ import useMedicalRecord from "../util/useMedicalRecord";
 
 export default function ViewMedicalRecords() {
     const navigate = useNavigate();
-    const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    let userSession;
 
-    // if role is not admin, go back to login page
-    if (userSession.role !== 'admin') navigate('/');
+    useEffect(() => {
+        userSession = JSON.parse(sessionStorage.getItem('userSession'));
+
+        // if userSession is empty, go back to login page
+        if (!userSession) {
+            navigate('/hospital');
+        } else {
+            // if role is not admin, go back to login page
+            if (userSession.role !== 'admin') navigate('/hospital');
+        }
+    }, []);
 
     const {
         isPatientLoading,

@@ -111,8 +111,6 @@ export default function UserLogin() {
                             </div>
                         </div>
                     </div>
-
-
                     <input
                         class="form-control"
                         id="formbtn"
@@ -120,7 +118,6 @@ export default function UserLogin() {
                         value={'Login'}
                     />
                 </form>
-
                 <div className="reginfocon text-center ">
                     <p>Don't have an account?</p>
                     <p>

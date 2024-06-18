@@ -116,9 +116,11 @@ export default function PatientRegistration() {
                         value={'Register Patient'}
                     />
                 </form>
-                <Link to={'/hospital'}> <div className="d-grid gap-2 d-md-block">
-                    <button className="btnback"> &larr; Go Back</button>
-                </div></Link>
+                <Link to={'/hospital'}>
+                    <div className="d-grid gap-2 d-md-block">
+                        <button className="btnback"> &larr; Go Back</button>
+                    </div>
+                </Link>
             </div>
         </div>
     );

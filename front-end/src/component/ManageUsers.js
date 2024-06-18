@@ -5,10 +5,19 @@ import StaffNavigation from "./StaffNavigation";
 
 export default function ManageUser() {
     const navigate = useNavigate();
-    const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    let userSession;
 
-    // if role is not admin, go back to login page
-    if (userSession.role !== 'admin') navigate('/');
+    useEffect(() => {
+        userSession = JSON.parse(sessionStorage.getItem('userSession'));
+
+        // if userSession is empty, go back to login page
+        if (!userSession) {
+            navigate('/hospital');
+        } else {
+            // if role is not admin, go back to login page
+            if (userSession.role !== 'admin') navigate('/hospital');
+        }
+    }, []);
 
     const [selectedUser, setSelectedUser] = useState(''); // Manage selected user type
     const {
@@ -178,12 +187,12 @@ export default function ManageUser() {
 
     function displayUserAs(userList) {
         return (
-            <> 
-            <div className="container manageuser-con">
-                <h3 class = "lblform">{selectedUser.substring(0, selectedUser.length - 1)} Form</h3>
-                <div>
-                    <form onSubmit={handleOnSubmit}>
-                    <div className="row mb-4 form-group">
+            <>
+                <div className="container manageuser-con">
+                    <h3 class="lblform">{selectedUser.substring(0, selectedUser.length - 1)} Form</h3>
+                    <div>
+                        <form onSubmit={handleOnSubmit}>
+                            <div className="row mb-4 form-group">
                                 <label htmlFor="name" class="col-sm-2 col-form-label">Name:</label>
                                 <div class="col-sm-10">
                                     <input
@@ -194,10 +203,10 @@ export default function ManageUser() {
                                         onChange={handleOnInputChange}
                                         value={userData.name}
                                         required
-                                    /> 
+                                    />
                                 </div>
-                    </div>
-                    <div className="row mb-4 form-group">
+                            </div>
+                            <div className="row mb-4 form-group">
                                 <label htmlFor="email" class="col-sm-2 col-form-label">Email:</label>
                                 <div class="col-sm-10">
                                     <input
@@ -208,14 +217,14 @@ export default function ManageUser() {
                                         onChange={handleOnInputChange}
                                         value={userData.email}
                                         required
-                                    /> 
+                                    />
                                 </div>
-                    </div>
-                    <div className="row mb-4 form-group">
+                            </div>
+                            <div className="row mb-4 form-group">
                                 <label htmlFor="role" class="col-sm-2 col-form-label">Role:</label >
                                 {isEditing ? (
                                     <div class="col-sm-10">
-                                        <select class = "form-select" name="role" onChange={handleOnInputChange} value={userData.role}>
+                                        <select class="form-select" name="role" onChange={handleOnInputChange} value={userData.role}>
                                             <option disabled value={''}>Select Role</option>
                                             {
                                                 definedRoles.map((definedRole, index) => {
@@ -226,7 +235,7 @@ export default function ManageUser() {
                                     </div>
                                 ) : (
                                     <div class="col-sm-10">
-                                        <select className = "form-select" name="role" disabled onChange={handleOnInputChange} value={userData.role}>
+                                        <select className="form-select" name="role" disabled onChange={handleOnInputChange} value={userData.role}>
                                             {definedRoles.map((definedRole, index) => {
                                                 if (definedRole === userData.role) {
                                                     return <option key={index} value={definedRole}>{definedRole}</option>;
@@ -236,10 +245,10 @@ export default function ManageUser() {
                                             })}
                                         </select>
                                     </div>
-                                )} 
-                    </div>
-                    <div className="row mb-4 form-group">
-                                <label class="col-sm-2 col-form-label"htmlFor="password">Password:</label>
+                                )}
+                            </div>
+                            <div className="row mb-4 form-group">
+                                <label class="col-sm-2 col-form-label" htmlFor="password">Password:</label>
                                 <div class="col-sm-10">
                                     <div className="input-group">
                                         <input
@@ -251,71 +260,71 @@ export default function ManageUser() {
                                             value={userData.password}
                                         />
                                         <button className="btn btn-outline-secondary" type="button" onClick={handleOnShowPassword}>
-                                    {showPassword ? 'Hide Password' : 'Show Password'}
-                                </button>
+                                            {showPassword ? 'Hide Password' : 'Show Password'}
+                                        </button>
                                     </div>
                                 </div>
-                    </div>      
-                    <div class = "upbtncon">
-                                    <input
+                            </div>
+                            <div class="upbtncon">
+                                <input
                                     class="btn-save"
-                                        type="submit"
-                                        value={isEditing ? `Update ${selectedUser.substring(0, selectedUser.length - 1)}`
-                                            : `Add ${selectedUser.substring(0, selectedUser.length - 1)}`}
+                                    type="submit"
+                                    value={isEditing ? `Update ${selectedUser.substring(0, selectedUser.length - 1)}`
+                                        : `Add ${selectedUser.substring(0, selectedUser.length - 1)}`}
+                                />
+                                {
+                                    isEditing &&
+                                    <input
+                                        class=" btn-cancel"
+                                        type="button"
+                                        value={'Cancel'}
+                                        onClick={handleOnClickCancel}
                                     />
-                                    {
-                                        isEditing &&
-                                        <input
-                                            class=" btn-cancel"
-                                            type="button"
-                                            value={'Cancel'}
-                                            onClick={handleOnClickCancel}
-                                        />
                                 }
-                        </div>
-                    </form>
-                </div>
-                <div>
-                    <h2 class="lblform">{selectedUser.substring(0, selectedUser.length - 1)} List</h2>
-                    {isUserLoading ? (
-                        <p className="norec">Loading {selectedUser}...</p>
-                    ) : (
-                        (!userList || userList.length === 0) ? (
-                            <p className="norec">{selectedUser} list is empty</p>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <h2 class="lblform">{selectedUser.substring(0, selectedUser.length - 1)} List</h2>
+                        {isUserLoading ? (
+                            <p className="norec">Loading {selectedUser}...</p>
                         ) : (
-                            <table class="table table-striped table-color">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {userList.map(user => {
-                                        return (
-                                            <tr key={user.id}>
-                                                <td>{user.name}</td>
-                                                <td>{user.email}</td>
-                                                <td>{user.role}</td>
-                                                <td>
-                                                    <button
-                                                    class="edit" onClick={() => handleOnEditUser(user)}>Edit</button>
-                                                    <button 
-                                                    id="delete" 
-                                                    class="delete" onClick={() => handleOnDeleteUser(user.id)}>Delete</button>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
-                        )
-                    )}
+                            (!userList || userList.length === 0) ? (
+                                <p className="norec">{selectedUser} list is empty</p>
+                            ) : (
+                                <table class="table table-striped table-color">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {userList.map(user => {
+                                            return (
+                                                <tr key={user.id}>
+                                                    <td>{user.name}</td>
+                                                    <td>{user.email}</td>
+                                                    <td>{user.role}</td>
+                                                    <td>
+                                                        <button
+                                                            class="edit" onClick={() => handleOnEditUser(user)}>Edit</button>
+                                                        <button
+                                                            id="delete"
+                                                            class="delete" onClick={() => handleOnDeleteUser(user.id)}>Delete</button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            )
+                        )}
+                    </div>
                 </div>
-            </div>
-            
+
             </>
         );
     }
@@ -327,19 +336,17 @@ export default function ManageUser() {
             <div class="container navmanage-users">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a  class="nav-link link-user " href="#" onClick={handleOnClickUser}>Patients</a>
+                        <a class="nav-link link-user " href="#" onClick={handleOnClickUser}>Patients</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-user" href="#" onClick={handleOnClickUser}>Doctors</a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link link-user" href="#" onClick={handleOnClickUser}>Receptionists</a>
+                        <a class="nav-link link-user" href="#" onClick={handleOnClickUser}>Receptionists</a>
                     </li>
                 </ul>
             </div>
-            <div>
-                {renderContent()}
-            </div>
+            <div>{renderContent()}</div>
         </div>
     );
 }

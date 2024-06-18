@@ -9,23 +9,19 @@ import StaffNavigation from "./StaffNavigation";
 export default function BookAppointment() {
     const navigate = useNavigate();
     const allowedRole = ['patient', 'receptionist'];
-    const userSessionString = sessionStorage.getItem('userSession');
-    const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    let userSession;
 
-    // if userSession is empty or the role is not the 
-    // same to the designated role, go back to login page
-    if (!userSessionString) {
-        navigate('/');
-    } else {
-        try {
+    useEffect(() => {
+        userSession = JSON.parse(sessionStorage.getItem('userSession'));
+
+        // if userSession is empty, go back to login page
+        if (!userSession) {
+            navigate('/hospital');
+        } else {
             // If userSession exists but the role is not the designated role, redirect to the login page
-            if (!allowedRole.includes(userSession.role)) navigate('/');
-        } catch (error) {
-            // If JSON parsing fails, redirect to the login page
-            console.error("Failed to parse userSession:", error);
-            navigate('/');
+            if (!allowedRole.includes(userSession.role)) navigate('/hospital');
         }
-    }
+    }, []);
 
     useEffect(() => {
         switch (userSession.role) {

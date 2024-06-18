@@ -8,7 +8,7 @@ export default function StaffNavigation({ userRole }) {
 
         if (response) {
             sessionStorage.removeItem('userSession');
-            navigate('/');
+            navigate('/hospital');
         }
     }
 
@@ -48,11 +48,8 @@ export default function StaffNavigation({ userRole }) {
                                 Book Appointment
                             </Link>
                         </li>
-                            
                     </ul>
-                   
-                         <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout</button>
-                          
+                    <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout</button>
                 </div>
             </nav>
         );
@@ -61,7 +58,7 @@ export default function StaffNavigation({ userRole }) {
     function navigationForDoctor() {
         return (
             <nav className="navbar fixed-top">
-                    <div className="container-fluid" >
+                <div className="container-fluid" >
                     <ul className="nav nav-underline">
                         <li className="nav-item">
                             <Link to={'/hospital/doctor/panel'} className="nav-link">
@@ -88,11 +85,9 @@ export default function StaffNavigation({ userRole }) {
                                 Manage Appointments
                             </Link>
                         </li>
-                        </ul>
-                   
-                         <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout
-
-                         </button>
+                    </ul>
+                    <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout
+                    </button>
                 </div>
             </nav>
         );
@@ -133,9 +128,8 @@ export default function StaffNavigation({ userRole }) {
                                 Manage Patient Records
                             </Link>
                         </li>
-                       </ul>
-                   
-                         <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout</button>
+                    </ul>
+                    <button onClick={handleOnClickLogout} id="logout" className='btn btn-primary '>Logout</button>
                 </div>
             </nav>
         );

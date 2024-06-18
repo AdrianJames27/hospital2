@@ -10,10 +10,19 @@ export default function ManageAppointments() {
     const navigate = useNavigate();
     const allowedRole = ['patient', 'doctor'];
     const statusList = ['scheduled', 'completed', 'cancelled'];
-    const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    let userSession;
 
-    // if role is not any of the allowedRole, go back to login page
-    if (!allowedRole.includes(userSession.role)) navigate('/');
+    useEffect(() => {
+        userSession = JSON.parse(sessionStorage.getItem('userSession'));
+
+        // if userSession is empty, go back to login page
+        if (!userSession) {
+            navigate('/hospital');
+        } else {
+            // if role is not any of the allowedRole, go back to login page
+            if (!allowedRole.includes(userSession.role)) navigate('/hospital');
+        }
+    }, []);
 
     useEffect(() => {
         switch (userSession.role) {
@@ -255,9 +264,7 @@ export default function ManageAppointments() {
                                     />
                                 </div>
                                 <div class="upbtncon">
-                                    {
-
-                                        isEditing &&
+                                    {isEditing &&
                                         <>
                                             <div className="row mb-4 form-group">
                                                 <input

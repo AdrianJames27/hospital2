@@ -8,12 +8,12 @@ export default function UserLogin() {
     const [password, setPassword] = useState('');
     const { isLoginSuccess, loginUser } = useUser();
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         const userSession = JSON.parse(sessionStorage.getItem('userSession'));
 
         if (!userSession) {
-            navigate('/');
+            navigate('/hospital');
         } else {
             if (isLoginSuccess || userSession) {
                 switch (userSession.role) {
@@ -40,7 +40,7 @@ export default function UserLogin() {
             setPassword('');
         }
     }, [isLoginSuccess]);
-    
+
     function handleOnInputChange(e) {
         const { name, value } = e.target;
 
@@ -65,7 +65,7 @@ export default function UserLogin() {
         e.preventDefault();
 
         const user = {
-            email: email, 
+            email: email,
             password: password
         };
 
@@ -81,17 +81,17 @@ export default function UserLogin() {
                 <form onSubmit={handleSubmit}>
                     <div className="row mb-4 form-group">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
-                            <div class="col-sm-10">
-                                <input
+                        <div class="col-sm-10">
+                            <input
                                 type="email" class="form-control" id="inputEmail3"
                                 name="email"
                                 placeholder="Enter you email"
                                 onChange={handleOnInputChange}
                                 required
                             />
-                            </div>
+                        </div>
                     </div>
-                    
+
                     <div className="row mb-4 form-group">
                         <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password:</label>
                         <div className="col-sm-10">
@@ -111,25 +111,22 @@ export default function UserLogin() {
                             </div>
                         </div>
                     </div>
-
-                    
                     <input
-                     class="form-control"
-                     id="formbtn"
+                        class="form-control"
+                        id="formbtn"
                         type="submit"
                         value={'Login'}
                     />
                 </form>
-
                 <div className="reginfocon text-center ">
                     <p>Don't have an account?</p>
                     <p>
                         Register as a patient, click{' '}
-                        <Link to='/user/patient/register'>here</Link>
+                        <Link to='/hospital/user/patient/register'>here</Link>
                     </p>
                     <p>
                         Register as a staff, click{' '}
-                        <Link to='/user/staff/register'>here</Link>
+                        <Link to='/hospital/user/staff/register'>here</Link>
                     </p>
                 </div>
             </div>
